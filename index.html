@@ -576,7 +576,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     <div class="done" id="r-done" hidden tabindex="-1">
       <div id="done-tr">
         <p class="opt-k">Último paso: transferí <b id="d-total">$ 2.800</b></p>
-        <p class="soft small">Tu código es <b id="d-code"></b>. Te guardamos el lugar hasta el <span id="d-vence"></span>. También te lo mandamos por mail.</p>
+        <p class="soft small">Tu código es <b id="d-code"></b>. Te guardamos el lugar hasta el <span id="d-vence"></span>. También te lo mandamos por mail (si no lo ves, revisá la carpeta de spam).</p>
         <dl class="acct">
           <div><dt>Titular</dt><dd>Juan Diego Sagasti</dd></div>
           <div><dt>Moneda</dt><dd>Pesos uruguayos (UYU)</dd></div>
@@ -807,7 +807,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     if (!p) return;
     var t = { ok: '¡Pago recibido!', pendiente: 'Tu pago está en proceso', error: 'El pago no se completó' }[p];
     var d = {
-      ok: 'En unos minutos te llega por mail tu entrada con el código QR (' + (q.get('c') || '') + ').',
+      ok: 'En unos minutos te llega por mail tu entrada con el código QR (' + (q.get('c') || '') + '). Si no lo ves, revisá la carpeta de spam.',
       pendiente: 'Mercado Pago nos avisa cuando se acredite y ahí te mandamos la entrada por mail.',
       error: 'No se cobró nada. Podés volver a intentar o elegir transferencia.'
     }[p];
