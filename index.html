@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Un día en El Paraíso · sábado 21 de noviembre">
+<meta property="og:description" content="Pilates, baño de gong, yoga, tai chi, comida de estación y fogón con violín y contrabajo. Una jornada en la chacra, en Punta Ballena.">
+<meta property="og:image" content="img/hero.jpg">
+<meta property="og:type" content="website">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>El Paraíso · La luz del día</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Albert+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant:wght@300;400&display=swap">
+<style>
+/* Layout: la página es el cielo del sábado. Cada hora es un capítulo con su propio color de luz,
+   y el fondo baja en degradé continuo de la neblina de la mañana al fuego de la noche.
+   Diseño de un solo tema, a propósito: los colores son los de la hora, no los del sistema. */
+:root {
+  color-scheme: light;
+  --ink-day: #17221f;
+  --soft-day: rgba(23, 34, 31, .72);
+  --ink-night: #f7ece0;
+  --soft-night: rgba(247, 236, 224, .74);
+  --ember: #ff8a3d;
+  --amber: #a8640f;
+  --on-photo: #fbfaf5;
+  --hl: #ffe680;
+  --hl-ink: #4a3600;
+  --f-hero: "Gloock", Georgia, serif;
+  --f-body: "Albert Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-hour: "Cormorant", "Cormorant Garamond", Georgia, serif;
+  --gl: max(16px, env(safe-area-inset-left, 0px));
+  --gr: max(16px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: #dfe8ea; color: var(--ink-day); font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.65; }
+img { display: block; max-width: 100%; }
+p, h1, h2, h3, figure, ul, dl, dd { margin: 0; }
+a { color: inherit; }
+.wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-left: var(--gl); padding-right: var(--gr); }
+.tbd { background: var(--hl); color: var(--hl-ink); font-family: var(--f-body); font-weight: 600; font-style: normal; font-size: min(.76em, .8rem); padding: 1px 6px; border-radius: 3px; vertical-align: .12em; line-height: 1.7; letter-spacing: 0; text-transform: none; }
+.draftbar { background: var(--hl); color: var(--hl-ink); font-size: .85rem; }
+.draftbar .wrap { padding-block: 9px; }
+
+/* ===== Hero (igual al borrador anterior) ===== */
+.hero { position: relative; color: var(--on-photo); background: #1b261f url("img/hero.jpg") center 60% / cover no-repeat; isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,14,11,.15) 0%, rgba(10,14,11,.25) 40%, rgba(10,14,11,.82) 100%); }
+.hero .wrap { max-width: 1080px; padding-block: clamp(140px, 30vw, 300px) clamp(40px, 7vw, 72px); display: grid; gap: 20px; }
+.hero .eyebrow { font-size: .875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .9; }
+.hero h1 { font-family: var(--f-hero); font-weight: 400; font-size: clamp(2.8rem, 10vw, 5.2rem); line-height: 1.05; max-width: 11ch; text-wrap: balance; }
+.hero .bajada { font-size: 1.3rem; line-height: 1.45; max-width: 34ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: .875rem; font-weight: 500; }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--amber); color: #fff; font-weight: 600; font-size: 1.0625rem; text-decoration: none; padding: 14px 22px; border-radius: 999px; }
+.btn svg { width: 20px; height: 20px; }
+.btn:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.price-tag { display: grid; gap: 2px; }
+.price-tag .amount { font-family: var(--f-hero); font-size: 1.75rem; line-height: 1; }
+.price-tag small { font-size: .875rem; opacity: .85; }
+
+
+/* ===== Menú principal ===== */
+.menu { background: #dde7ea; }
+.menu .wrap { padding-block: 28px 4px; }
+.menu ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.menu a {
+  display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; align-items: center;
+  padding: 14px 14px; border-radius: 6px; text-decoration: none; color: var(--ink-day);
+  background: rgba(255, 255, 255, .7); border: 1px solid rgba(23, 34, 31, .08);
+  min-height: 64px;
+}
+.menu a:hover { background: #fff; }
+.menu a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.menu svg { width: 26px; height: 26px; color: var(--amber); }
+.menu b { display: block; font-family: var(--f-hero); font-weight: 400; font-size: 1.12rem; line-height: 1.15; }
+.menu small { display: block; font-size: .8rem; color: var(--soft-day); line-height: 1.3; }
+.menu a.wa svg { color: #1f9e55; }
+@media (min-width: 760px) { .menu ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* ===== Inscripción e info, compactas ===== */
+.formbox { margin-top: 36px; }
+.formbox > summary { list-style: none; cursor: pointer; border: 0; font: inherit; font-weight: 600; background: var(--ember); color: #1a0d05; }
+.formbox > summary::-webkit-details-marker { display: none; }
+.formbox .opened, .formbox[open] .closed { display: none; }
+.formbox[open] .opened { display: inline; }
+.formbox[open] > summary { background: transparent; color: var(--ink-night); box-shadow: 0 0 0 1.5px rgba(247,236,224,.5) inset; }
+.info { margin-top: 40px; border-top: 1px solid rgba(247,236,224,.18); border-bottom: 1px solid rgba(247,236,224,.18); }
+.info > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding-block: 18px; font-family: var(--f-hero); font-size: 1.3rem; }
+.info > summary::-webkit-details-marker { display: none; }
+.info > summary:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+.info[open] .tog { opacity: 1; transform: rotate(180deg); }
+.info[open] .tog::after { transform: translate(-50%, -50%) rotate(0deg); }
+.info .practical { margin: 8px 0 28px; }
+
+/* ===== Botón flotante de consultas ===== */
+.wa-fab {
+  position: fixed; z-index: 22;
+  left: calc(env(safe-area-inset-left, 0px) + 14px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+  display: flex; align-items: center; gap: 8px;
+  height: 52px; padding: 0 18px 0 14px; border-radius: 26px;
+  background: #1f9e55; color: #fff; text-decoration: none; font-weight: 600; font-size: .95rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
+}
+.wa-fab svg { width: 24px; height: 24px; flex: none; }
+.wa-fab:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+footer { padding-bottom: 90px; }
+
+/* ===== Barra lateral: el día en globitos =====
+   En el navegador de iPhone (y el de WhatsApp) las zonas transparentes de un elemento fijo se pintan negras
+   al desplazar. Por eso la barra es una cápsula con fondo propio, del tamaño justo de los globitos,
+   y el nombre del momento va en un cartelito aparte, también con fondo propio. */
+.rail {
+  --row: 32px;
+  --h: calc(13 * var(--row) + 12 * 2px + 16px);
+  position: fixed; z-index: 20;
+  top: max(calc(env(safe-area-inset-top, 0px) + 8px), calc(50% - var(--h) / 2));
+  right: calc(env(safe-area-inset-right, 0px) + 6px);
+  padding: 8px 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .62);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .1);
+}
+.rail.is-night { background: rgba(24, 14, 16, .62); }
+.rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; position: relative; }
+.rail ol::before {
+  content: ""; position: absolute; left: 50%; margin-left: -1px; top: 16px; bottom: 16px; width: 2px; border-radius: 2px;
+  background: linear-gradient(#f6d98b, #f2c14e 40%, #ff8a3d 80%, #c2452d);
+  opacity: .6;
+}
+.rail a { display: grid; place-items: center; position: relative; width: 32px; height: var(--row); text-decoration: none; }
+.rail .dot {
+  width: 20px; height: 20px; border-radius: 50%; position: relative;
+  background: var(--c); border: 2.5px solid rgba(255,255,255,.95);
+}
+.rail .dot.res { border-radius: 4px; transform: rotate(45deg) scale(.9); }
+.rail .cap svg { width: 26px; height: 26px; overflow: visible; position: relative; }
+.rail .lbl { display: none; }
+.rail a.on .dot { width: 24px; height: 24px; border-width: 3px; }
+.rail a.on .dot.res { transform: rotate(45deg); }
+.rail a:focus-visible { outline: 2px solid var(--amber); outline-offset: 1px; border-radius: 999px; }
+.rail-tip {
+  position: fixed; z-index: 21;
+  right: calc(env(safe-area-inset-right, 0px) + 50px);
+  top: 50%;
+  font-size: .8rem; font-weight: 600; line-height: 18px; white-space: nowrap; font-variant-numeric: tabular-nums;
+  padding: 4px 11px; border-radius: 999px;
+  background: #fff; color: var(--ink-day);
+  box-shadow: 0 1px 6px rgba(0,0,0,.14);
+  pointer-events: none;
+}
+.rail-tip.is-night { background: #1d1214; color: var(--ink-night); }
+
+/* ===== Capítulos: cada hora con su luz ===== */
+.day-head { background: #dde7ea; }
+.day-head .wrap { padding-block: clamp(48px, 8vw, 80px) 18px; display: grid; gap: 4px; }
+.day-head .kick { font-family: var(--f-hero); font-size: clamp(2rem, 6vw, 3rem); line-height: 1.05; }
+.day-head .hint { color: var(--soft-day); }
+.hour {
+  background: linear-gradient(180deg, var(--a), var(--b));
+  color: var(--ink-day);
+  border-top: 1px solid rgba(23, 34, 31, .08);
+  scroll-margin-top: 8px;
+}
+.hour > summary { list-style: none; cursor: pointer; }
+.hour > summary::-webkit-details-marker { display: none; }
+.hour > summary:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.row { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr) 30px; align-items: center; gap: 14px; padding-block: 18px; }
+.row time { font-family: var(--f-hour); font-weight: 400; font-size: 2.1rem; line-height: 1; font-variant-numeric: lining-nums; transition: font-size .35s ease; }
+.row .line { display: grid; gap: 1px; min-width: 0; }
+.row .what { font-family: var(--f-hero); font-size: clamp(1.25rem, 3.6vw, 1.6rem); line-height: 1.15; }
+.row .who { font-size: .92rem; color: var(--soft-day); }
+.tog { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid currentColor; position: relative; opacity: .6; justify-self: end; transition: transform .3s ease, opacity .3s ease; }
+.tog::before, .tog::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); }
+.tog::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform .3s ease; }
+.hour[open] .tog { opacity: 1; transform: rotate(180deg); }
+.hour[open] .tog::after { transform: translate(-50%, -50%) rotate(0deg); }
+.hour[open] > summary .row { grid-template-columns: minmax(0, 1fr) 30px; padding-block: clamp(40px, 7vw, 72px) 12px; }
+.hour[open] > summary time { grid-column: 1 / -1; grid-row: 1; font-weight: 300; font-size: clamp(5rem, 20vw, 11rem); line-height: .85; letter-spacing: -.02em; }
+.hour[open] > summary .line { grid-column: 1; }
+.hour[open] > summary .what { font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.05; }
+.hour[open] > summary .who { font-size: 1.05rem; }
+.hour[open] > summary .tog { grid-column: 2; grid-row: 2; }
+.hour > .wrap { padding-bottom: clamp(56px, 9vw, 110px); }
+.lead { font-size: 1.05rem; max-width: 60ch; }
+@media (max-width: 1179px) {
+  .menu .wrap, .day-head .wrap, .hour .wrap, .night .wrap { padding-right: calc(var(--gr) + 30px); }
+}
+@media (prefers-reduced-motion: reduce) { .row time, .tog, .tog::after { transition: none; } }
+.hour .soft { color: var(--soft-day); }
+.chapter { display: grid; gap: clamp(24px, 4vw, 48px); }
+.stamp { display: grid; gap: 4px; }
+.stamp time { font-family: var(--f-hour); font-weight: 300; font-size: clamp(5.5rem, 22vw, 12rem); line-height: .82; letter-spacing: -.02em; font-variant-numeric: lining-nums; }
+.stamp .what { font-family: var(--f-hero); font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.05; text-wrap: balance; }
+.stamp .who { font-size: 1.05rem; }
+.body { display: grid; gap: 1.05em; max-width: 62ch; min-width: 0; }
+.body h4 { font-family: var(--f-hero); font-weight: 400; font-size: 1.35rem; margin: .4em 0 -.3em; }
+.body ul { padding-left: 1.1em; display: grid; gap: 4px; }
+.body .quote { font-family: var(--f-hour); font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.25; font-style: italic; }
+.portrait { width: 100%; border-radius: 2px; object-fit: cover; }
+.portrait.tall { aspect-ratio: 4 / 5; }
+.portrait.wide { aspect-ratio: 3 / 2; }
+@media (min-width: 860px) {
+  .chapter.split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; column-gap: 56px; }
+  .chapter.split .stamp { position: sticky; top: 80px; }
+  .chapter.split .stamp .portrait { margin-top: 28px; }
+  .chapter.split.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .chapter.split.flip .stamp { order: 2; }
+}
+.mini { display: grid; gap: 6px; }
+.mini .stamp time { font-size: clamp(3.6rem, 12vw, 6.5rem); }
+
+/* Mesa */
+.table { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 28px; }
+.table h3 { font-family: var(--f-hero); font-weight: 400; font-size: 1.35rem; margin-bottom: 6px; }
+.table ul { list-style: none; padding: 0; display: grid; gap: 2px; }
+
+/* Recorrido de fotos */
+.walk { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; margin-top: 8px; scrollbar-width: thin; }
+.walk figure { flex: 0 0 min(78vw, 460px); scroll-snap-align: start; display: grid; gap: 8px; }
+.walk img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
+.walk figcaption { font-size: .9rem; }
+.walk-wrap { min-width: 0; }
+
+/* Fogón */
+.fire { position: relative; color: var(--on-photo); background: #0d0a09 url("img/cierre.jpg") center 70% / cover no-repeat; isolation: isolate; }
+.fire::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, #5b3240 0%, rgba(40,20,22,.55) 30%, rgba(14,9,10,.9) 100%); }
+.fire > .wrap { padding-bottom: clamp(90px, 14vw, 160px); }
+.fire, .fire .row .who { color: var(--on-photo); }
+.fire .row .who { opacity: .8; }
+.fire { border-top: 0; }
+.duo-wrap { display: grid; gap: 24px; align-items: center; }
+.duo { width: min(100%, 420px); height: auto; justify-self: center; overflow: visible; }
+.duo .b { fill: none; stroke: var(--ember); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.duo .t { fill: none; stroke: var(--ember); stroke-width: 1.2; opacity: .55; }
+.duo .s { fill: none; stroke: #ffd2a8; stroke-width: .8; opacity: .75; }
+.duo .f { fill: var(--ember); }
+.duo .sp { fill: #ffb36b; animation: rise 5s ease-in-out infinite alternate; }
+.duo .sp:nth-of-type(2n) { animation-duration: 6.5s; }
+@keyframes rise { to { transform: translateY(-14px); opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .duo .sp { animation: none; } }
+@media (min-width: 760px) { .duo-wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+/* Noche: reserva */
+.night { background: #120d0f; color: var(--ink-night); padding-block: clamp(64px, 10vw, 120px); }
+.night h2 { font-family: var(--f-hero); font-weight: 400; font-size: clamp(2.2rem, 7vw, 4rem); line-height: 1.05; text-wrap: balance; }
+.night .soft { color: var(--soft-night); }
+.prices { display: grid; gap: 0; margin-top: 36px; border-top: 1px solid rgba(247,236,224,.18); }
+.price { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 18px; align-items: baseline; padding-block: 20px; border-bottom: 1px solid rgba(247,236,224,.18); }
+.price .amount { font-family: var(--f-hour); font-size: clamp(2.6rem, 8vw, 4rem); line-height: 1; font-variant-numeric: lining-nums; }
+.price .label { font-weight: 600; }
+.price .when { grid-column: 1 / -1; color: var(--soft-night); font-size: .95rem; }
+.price.now .amount, .price.now .label { color: var(--ember); text-shadow: 0 0 24px rgba(255,138,61,.45); }
+.practical { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 28px 40px; margin-top: 56px; }
+.practical dt { font-family: var(--f-hero); font-size: 1.2rem; }
+.practical dd { color: var(--soft-night); }
+.night .btn { background: var(--ember); color: #1a0d05; }
+.cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.reg { display: grid; gap: 28px; margin-top: 44px; max-width: 720px; }
+.step { border: 0; padding: 0; margin: 0; display: grid; gap: 14px; min-width: 0; }
+.step legend { font-family: var(--f-hero); font-size: 1.45rem; padding: 0; margin-bottom: 4px; display: flex; align-items: center; gap: 12px; }
+.step .n { width: 30px; height: 30px; border-radius: 50%; display: inline-grid; place-items: center; font-family: var(--f-body); font-size: .9rem; font-weight: 600; background: var(--ember); color: #1a0d05; flex: none; }
+.small { font-size: .92rem; }
+.qty { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.qbtn { width: 44px; height: 44px; border-radius: 50%; font: inherit; font-size: 1.4rem; line-height: 1; color: var(--ink-night); background: transparent; border: 1.5px solid rgba(247,236,224,.5); cursor: pointer; }
+.qbtn:disabled { opacity: .3; cursor: default; }
+.qbtn:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+.qty output { font-family: var(--f-hour); font-size: 2.6rem; min-width: 1.6ch; text-align: center; line-height: 1; }
+.total { margin-left: auto; font-size: 1rem; }
+.total b { font-family: var(--f-hour); font-size: 2rem; font-weight: 400; color: var(--ember); }
+.total small { color: var(--soft-night); }
+.person { display: grid; gap: 12px; padding: 18px; border: 1px solid rgba(247,236,224,.18); border-radius: 4px; margin-bottom: 12px; }
+.person h4 { font-family: var(--f-hero); font-weight: 400; font-size: 1.1rem; margin: 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px 16px; }
+.reg label { display: grid; gap: 6px; font-size: .9rem; color: var(--soft-night); min-width: 0; }
+.reg input[type=text], .reg input[type=tel], .reg input[type=email], .reg input[type=date] {
+  font: inherit; font-size: 1rem; color: var(--ink-night); background: rgba(247,236,224,.06);
+  border: 1px solid rgba(247,236,224,.28); border-radius: 4px; padding: 11px 12px; width: 100%; min-width: 0; color-scheme: dark;
+}
+.reg input:focus-visible { outline: 2px solid var(--ember); outline-offset: 1px; border-color: transparent; }
+.reg input[aria-invalid=true] { border-color: #ff6b5a; }
+.hintline { font-size: .8rem; color: #ffb3a8; min-height: 1em; }
+.opt-l { opacity: .75; }
+.paygrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.reg .payopt { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; padding: 16px; border: 1px solid rgba(247,236,224,.25); border-radius: 4px; cursor: pointer; color: var(--ink-night); }
+.reg .payopt:has(input:checked) { border-color: var(--ember); box-shadow: 0 0 30px rgba(255,138,61,.12) inset; }
+.payopt input, .consent input { accent-color: #ff8a3d; width: 18px; height: 18px; margin-top: 3px; }
+.payopt b { display: block; font-weight: 600; font-size: 1rem; }
+.payopt small { color: var(--soft-night); font-size: .88rem; }
+.reg .consent { grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; }
+.reg .consents { display: grid; gap: 14px; }
+.err { color: #ffb3a8; font-weight: 600; }
+.reg .btn { justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 600; background: var(--ember); color: #1a0d05; }
+.done { margin-top: 40px; padding: 24px; border: 1px solid var(--ember); border-radius: 4px; display: grid; gap: 16px; max-width: 720px; box-shadow: 0 0 40px rgba(255,138,61,.12) inset; }
+.done:focus { outline: none; }
+.opt-k { font-family: var(--f-hero); font-size: 1.45rem; line-height: 1.2; }
+.opt-k b { font-weight: 400; color: var(--ember); }
+.acct { display: grid; gap: 10px; margin: 0; }
+.acct div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.acct dt { color: var(--soft-night); font-size: .9rem; }
+.acct dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.copy { font: inherit; font-size: .8rem; font-weight: 600; color: var(--ink-night); background: transparent; border: 1px solid rgba(247,236,224,.4); border-radius: 999px; padding: 2px 10px; margin-left: 6px; cursor: pointer; }
+.copy:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.up { display: grid; gap: 8px; }
+.up label { font-size: .95rem; }
+.up input[type=file] { font: inherit; font-size: .9rem; color: var(--ink-night); max-width: 100%; }
+.confirm { margin-top: 20px; font-size: .95rem; }
+footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; padding-block: 24px 36px; }
+</style>
+
+<div class="draftbar" role="note"><div class="wrap"><b>Versión 2 · La luz del día.</b> Lo resaltado <span class="tbd">así</span> falta confirmar. Lo que nombra o muestra a Carlos necesita su aprobación.</div></div>
+
+<nav class="rail" id="rail" aria-label="El día, hora por hora" hidden><ol><li class="cap"><a href="#dia" data-t="dia" aria-label="Arriba: el día empieza"><svg viewBox="-13 -13 26 26" aria-hidden="true"><g stroke="#f2b843" stroke-width="2" stroke-linecap="round"><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(0)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(45)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(90)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(135)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(180)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(225)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(270)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(315)"/></g><circle r="5.5" fill="#f6d06a" stroke="#fff" stroke-width="1.5"/></svg><span class="lbl">El día empieza</span></a></li><li><a href="#h1000" data-t="h1000" style="--c:#f6d98b"><span class="dot"></span><span class="lbl">10:00 · Llegada a la chacra</span></a></li><li><a href="#h1030" data-t="h1030" style="--c:#f4d27c"><span class="dot"></span><span class="lbl">10:30 · Pilates</span></a></li><li><a href="#h1130" data-t="h1130" style="--c:#f2cb6a"><span class="dot"></span><span class="lbl">11:30 · Baño de gong</span></a></li><li><a href="#h1230" data-t="h1230" style="--c:#f5c44f"><span class="dot"></span><span class="lbl">12:30 · Almuerzo</span></a></li><li><a href="#h1400" data-t="h1400" style="--c:#f2b843"><span class="dot"></span><span class="lbl">14:00 · Yoga</span></a></li><li><a href="#h1500" data-t="h1500" style="--c:#efa93a"><span class="dot"></span><span class="lbl">15:00 · Recreo</span></a></li><li><a href="#h1530" data-t="h1530" style="--c:#ec9a33"><span class="dot"></span><span class="lbl">15:30 · Tai Chi y Qigong</span></a></li><li><a href="#h1630" data-t="h1630" style="--c:#e88a2e"><span class="dot"></span><span class="lbl">16:30 · Merienda</span></a></li><li><a href="#h1700" data-t="h1700" style="--c:#e2752b"><span class="dot"></span><span class="lbl">17:00 · Café concert</span></a></li><li><a href="#h1830" data-t="h1830" style="--c:#ff8a3d"><span class="dot"></span><span class="lbl">18:30 · Fogón y música</span></a></li><li class="cap"><a href="#h1830" data-t="h1830-sunset" aria-label="El atardecer"><svg viewBox="-13 -13 26 26" aria-hidden="true"><defs><clipPath id="hz"><rect x="-13" y="-13" width="26" height="15"/></clipPath></defs><g stroke="#ff7a3d" stroke-width="2" stroke-linecap="round"><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(-70)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(-35)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(0)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(35)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(70)"/></g><circle r="6.5" fill="#ff8a3d" stroke="#fff" stroke-width="1.5" clip-path="url(#hz)"/><line x1="-11" y1="2.5" x2="11" y2="2.5" stroke="#c2452d" stroke-width="2" stroke-linecap="round"/><line x1="-6" y1="6.5" x2="6" y2="6.5" stroke="#c2452d" stroke-width="1.6" stroke-linecap="round" opacity=".7"/></svg><span class="lbl">Atardecer sobre la laguna</span></a></li><li><a href="#reserva" data-t="reserva" style="--c:#ff8a3d"><span class="dot res"></span><span class="lbl">Inscribite</span></a></li></ol></nav>
+<div class="rail-tip" id="rail-tip" hidden aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Sábado 21 de noviembre · Punta Ballena</p>
+    <h1>Un día en El Paraíso</h1>
+    <p class="bajada">Un sábado entero para moverte, respirar, escuchar y celebrar, en una chacra frente a la Laguna del Sauce.</p>
+    <p class="facts"><span>10:00 a 20:00</span><span>Ruta 12 km 8,5</span><span>Cupo 30 a 50 personas <span class="tbd">máximo a definir</span></span></p>
+    <div class="hero-cta">
+      <a class="btn" href="#reserva" data-open-form>Inscribirme</a>
+      <div class="price-tag"><span class="amount">$ 2.800</span><small>Early bird · precio de lanzamiento</small></div>
+    </div>
+  </div>
+</header>
+
+<nav class="menu" aria-label="Menú"><div class="wrap"><ul><li><a href="#dia" data-go="dia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg><span><b>El programa</b><small>Hora por hora</small></span></a></li><li><a href="#reserva" data-go="reserva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 8.5v10" stroke-dasharray="1.5 2"/></svg><span><b>Inscribite</b><small>Precios y formulario</small></span></a></li><li><a href="#h1230" data-go="h1230"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M9 9c0-1.5 1-1.5 1-3M13 9c0-1.5 1-1.5 1-3"/></svg><span><b>La comida</b><small>Almuerzo y merienda</small></span></a></li><li><a href="#h1500" data-go="h1500"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l6-8 4 5 3-3 5 6z"/><circle cx="16.5" cy="7.5" r="2"/></svg><span><b>El lugar</b><small>Fotos de la chacra</small></span></a></li><li><a href="#info" data-go="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><b>Cómo llegar</b><small>Qué traer y preguntas</small></span></a></li><li><a class="wa" href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span><b>Consultas</b><small>Por WhatsApp</small></span></a></li></ul></div></nav>
+
+<main id="dia">
+  <div class="day-head"><div class="wrap"><p class="kick">El sábado, hora por hora</p><p class="hint">Tocá cada momento para verlo completo.</p></div></div>
+  <details class="hour" id="h1000" style="--a:#dde7ea; --b:#e3ece9" data-clock="10:00 · Llegada" data-sun="#f6d98b"><summary><div class="wrap row"><time>10:00</time><span class="line"><span class="what">Llegada a la chacra</span><span class="who">Bienvenida</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap mini">
+      
+      <p class="body soft">Te recibimos en la entrada, con la neblina de la mañana todavía sobre la laguna. Cuatro prácticas, comida de estación, un café concert y un fogón con violín y contrabajo en vivo: el día entero está pensado para que no tengas que mirar el reloj. <span class="tbd">¿infusión de bienvenida?</span></p>
+    </div>
+  </details>
+
+  <details class="hour" id="h1030" style="--a:#e3ece9; --b:#e9efe4" data-clock="10:30 · Pilates" data-sun="#f4d27c"><summary><div class="wrap row"><time>10:30</time><span class="line"><span class="what">Pilates</span><span class="who">con Maca Caeiro</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap chapter split">
+      <div class="stamp">
+        
+        
+        
+        <img class="portrait wide" src="img/p-maca.jpg" alt="Maca Caeiro, profesora de pilates" loading="lazy">
+      </div>
+      <div class="body">
+        <p class="quote">“Encontré en el método Pilates una manera completa de mantenerme en forma física, mental y emocionalmente.”</p>
+        <p>Hace 15 años que me dedico a trabajar y a estudiar el movimiento físico. Elegí enfocarme en el método Pilates porque encontré en él una manera completa de mantenerme en forma física, mental y emocionalmente.</p>
+        <p>A mis 16 años comencé a practicar acrobacias en telas y pocos años después tuve grupos a mi cargo. Durante 10 años acompañé procesos grupales de esta modalidad para niños y adultos. A la par, siempre entrené desde el método Pilates para mantenerme fuerte, con la flexibilidad y la movilidad necesarias para practicar las acrobacias aéreas.</p>
+        <p>También soy entrenadora personal: hace 10 años que comencé a estudiar y a sostener procesos de forma individual y en grupos reducidos. Hoy en día me dedico profesionalmente a esto último, en grupos reducidos y de forma individual, mayoritariamente desde el método Pilates. Aunque también me gusta estudiar y aprender siempre cosas nuevas, y desde ese lugar ir enriqueciendo mis propuestas.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="hour" id="h1130" style="--a:#e9efe4; --b:#f1f0dc" data-clock="11:30 · Baño de gong" data-sun="#f2cb6a"><summary><div class="wrap row"><time>11:30</time><span class="line"><span class="what">Baño de gong</span><span class="who">con Vero Sosa</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap chapter split flip">
+      <div class="stamp">
+        
+        
+        
+        <img class="portrait tall" src="img/p-gong.jpg" alt="Vero Sosa, facilitadora del baño de gong" loading="lazy">
+      </div>
+      <div class="body">
+        <p class="quote">Un viaje hacia el interior.</p>
+        <h4>¿En qué consiste un baño de gong?</h4>
+        <p>Es una experiencia de inmersión sonora en la que los sonidos y las vibraciones del gong envuelven el cuerpo y la mente, invitándonos a soltar las tensiones, aquietar los pensamientos y conectar con el momento presente. Solo es necesario entregarse a la escucha y permitirse recibir.</p>
+        <h4>Beneficios</h4>
+        <ul>
+          <li>Favorece la relajación profunda.</li>
+          <li>Ayuda a disminuir el estrés y la tensión.</li>
+          <li>Invita a aquietar la mente y descansar.</li>
+          <li>Promueve la conexión con el cuerpo y la respiración.</li>
+          <li>Abre un espacio de introspección, armonía y bienestar interior.</li>
+        </ul>
+        <h4>Mi camino como terapeuta</h4>
+        <p>Como Terapeuta de Sonido y Facilitadora de Gong, siento que mi propósito es crear espacios donde el sonido se convierta en un puente hacia el interior de cada persona.</p>
+        <p>A través de la vibración, acompaño experiencias de relajación, presencia y conexión personal, desde el respeto por el proceso y la vivencia única de cada ser.</p>
+        <p>Para mí, tocar el gong es mucho más que producir sonido: es compartir una vibración que nos invita a detenernos, escucharnos y recordar la conexión con nuestra esencia.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="hour" id="h1230" style="--a:#f1f0dc; --b:#f6efd2" data-clock="12:30 · Almuerzo" data-sun="#f5c44f"><summary><div class="wrap row"><time>12:30</time><span class="line"><span class="what">Almuerzo</span><span class="who">RaízCo Experiencias</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap chapter">
+      <div class="stamp"><p class="lead soft">Cocina de estación de RaízCo Experiencias, Matías Amadasi y Agustina Francia. Producto local, sin ultraprocesados, adaptable a distintas necesidades: avisanos al reservar.</p></div>
+      <div class="table">
+        <div><h3>Para compartir</h3><ul class="soft"><li>Panes de masa madre</li><li>Focaccia con cherry y romero</li><li>Hummus de la huerta</li><li>Wraps de falafel de habas</li><li>Buddha bowl de quinoa</li><li>Fermentos y pickles</li></ul></div>
+        <div><h3>Todo el día</h3><ul class="soft"><li>Agua de menta, limón y jengibre</li><li>Té chai de la casa</li><li>Kéfir saborizado</li><li>Licuados hechos en el momento</li></ul></div>
+      </div>
+      <p class="soft"><span class="tbd">menú final a elegir con RaízCo · pedirles fotos</span></p>
+    </div>
+  </details>
+
+  <details class="hour" id="h1400" style="--a:#f6efd2; --b:#f3e4bd" data-clock="14:00 · Yoga" data-sun="#f2b843"><summary><div class="wrap row"><time>14:00</time><span class="line"><span class="what">Yoga</span><span class="who">con Susana Ameglio</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap chapter split">
+      <div class="stamp">
+        
+        
+        
+        <img class="portrait tall" src="img/p-susana.jpg" alt="Susana Ameglio, profesora de yoga" loading="lazy">
+      </div>
+      <div class="body">
+        <p class="quote">“Enseñar yoga es regalar un momento de pausa, presencia y conexión.”</p>
+        <p>Soy Susana Ameglio, apasionada por la naturaleza, el aprendizaje y el autoconocimiento. Hace muchos años comencé a practicar yoga y, con el tiempo, dejó de ser solamente una práctica sobre el mat para convertirse en una parte esencial de mi vida cotidiana y de mi manera de relacionarme conmigo misma y con el mundo.</p>
+        <p>Creo en un estilo de vida consciente, donde el movimiento, la alimentación y el contacto con la naturaleza son herramientas que nos ayudan a sentirnos mejor y a vivir con mayor bienestar. Como health coach y profesora de yoga, busco integrar estos caminos y compartir lo que a mí me transforma y me hace bien.</p>
+        <p>Actualmente doy clases de yoga a grupos y también a personas de manera individual. Me encanta acompañar a cada persona en su propio proceso y compartir la belleza de esta práctica, que nos invita a conectar con el cuerpo, aquietar la mente y encontrar un espacio para nosotros mismos, en medio del ritmo de la vida cotidiana.</p>
+        <p>Para mí, enseñar yoga es mucho más que guiar una clase: es regalar un momento de pausa, presencia y conexión; una oportunidad para que cada persona se vaya sintiendo un poco mejor, más liviana y con otra energía para continuar su día.</p>
+        <p>Mi deseo es que esa sensación nos acompañe también fuera del mat, porque el verdadero valor del yoga se descubre cuando empezamos a llevarlo a nuestra vida.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="hour" id="h1500" style="--a:#f3e4bd; --b:#efd6a6" data-clock="15:00 · Recreo" data-sun="#efa93a"><summary><div class="wrap row"><time>15:00</time><span class="line"><span class="what">Recreo</span><span class="who">Caminar la chacra</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap chapter">
+      <div class="stamp"><p class="lead soft">Media hora libre para recorrer El Paraíso, la chacra de Carlos Perciavalle <span class="tbd">requiere aprobación de Carlos</span>, hasta la orilla de la laguna.</p></div>
+      <div class="walk-wrap">
+        <div class="walk" tabindex="0" aria-label="Fotos de la chacra, deslizá para ver más">
+          <figure><img src="img/g0136.jpg" alt="Portón de entrada El Paraíso" loading="lazy"><figcaption class="soft">La entrada</figcaption></figure>
+          <figure><img src="img/g0138.jpg" alt="Camino entre palmeras" loading="lazy"><figcaption class="soft">El camino de palmeras</figcaption></figure>
+          <figure><img src="img/g0163.jpg" alt="Sol entre los árboles y la laguna" loading="lazy"><figcaption class="soft">La Laguna del Sauce</figcaption></figure>
+          <figure><img src="img/g0170.jpg" alt="Cipreses frente a la laguna" loading="lazy"><figcaption class="soft">Los cipreses</figcaption></figure>
+          <figure><img src="img/g0152.jpg" alt="Oveja con corderos" loading="lazy"><figcaption class="soft">Las vecinas</figcaption></figure>
+          <figure><img src="img/g0167.jpg" alt="Estanque de piedra" loading="lazy"><figcaption class="soft">El estanque</figcaption></figure>
+          <figure><img src="img/g0145.jpg" alt="Rostro esculpido en una pirca" loading="lazy"><figcaption class="soft">La pirca</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="hour" id="h1530" style="--a:#efd6a6; --b:#e8c08a" data-clock="15:30 · Tai Chi" data-sun="#ec9a33"><summary><div class="wrap row"><time>15:30</time><span class="line"><span class="what">Tai Chi y Qigong</span><span class="who">con Camilo Sosa Garcia · Camino del Dragón</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap chapter split flip">
+      <div class="stamp">
+        
+        
+        
+        <img class="portrait tall" src="img/p-camilo.jpg" alt="Camilo Sosa Garcia, instructor de tai chi" loading="lazy">
+      </div>
+      <div class="body">
+        <p class="quote">“Cada movimiento es una oportunidad para cultivar la presencia.”</p>
+        <p>Me dedico al estudio y la práctica de las artes internas chinas, especialmente el Tai Chi Chuan y el Qigong, disciplinas que integran el movimiento, la respiración, la atención y el cultivo de la energía.</p>
+        <p>Practico Tai Chi desde 2016 y, a lo largo de estos años, he profundizado en distintos aspectos de esta disciplina, especialmente en el estilo Yang y el estilo Chen, explorando tanto sus beneficios para la salud como sus fundamentos marciales.</p>
+        <p>También estudio y enseño Qigong y Dao Yin Yang Sheng Gong, prácticas orientadas al bienestar, la conciencia corporal y el equilibrio entre cuerpo y mente.</p>
+        <p>A través de mi proyecto <i>Camino del Dragón</i>, comparto estas disciplinas mediante clases grupales, prácticas individuales y encuentros dedicados al desarrollo integral de las personas.</p>
+        <p>Entiendo el Tai Chi como un camino de aprendizaje continuo, en el que cada movimiento es una oportunidad para cultivar la presencia, mejorar nuestra relación con el cuerpo y encontrar mayor equilibrio en la vida cotidiana.</p>
+        <p>Mi intención es acercar estas prácticas a personas de diferentes edades y niveles de experiencia, ofreciendo un espacio para conectar con uno mismo, desarrollar la vitalidad y descubrir los beneficios del movimiento consciente.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="hour" id="h1630" style="--a:#e8c08a; --b:#dfa978" data-clock="16:30 · Merienda" data-sun="#e88a2e"><summary><div class="wrap row"><time>16:30</time><span class="line"><span class="what">Merienda</span><span class="who">RaízCo Experiencias</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap mini">
+      
+      <p class="body soft">Mandala de frutas y frutos secos, torta de manzana especiada, brownie de la tierra, cookies de avena y dátiles. Licuados hechos en el momento.</p>
+    </div>
+  </details>
+
+  <details class="hour" id="h1700" style="--a:#dfa978; --b:#b97a63" data-clock="17:00 · Café concert" data-sun="#e2752b"><summary><div class="wrap row"><time>17:00</time><span class="line"><span class="what">Café concert</span><span class="who">con Carlos Perciavalle <span class="tbd">aprobación de Carlos</span></span></span><span class="tog" aria-hidden="true"></span></div></summary>
+    <div class="wrap chapter split">
+      
+      <div class="body">
+        <img class="portrait wide" src="img/g0161.jpg" alt="Cartel fileteado de Carlos Perciavalle, cómico" loading="lazy">
+        <p><span class="tbd">presentación de Carlos, en sus palabras</span></p>
+        <p class="soft"><span class="tbd">18:00 a 18:30 sin asignar</span></p>
+      </div>
+    </div>
+  </details>
+
+<details class="hour fire" id="h1830" data-clock="18:30 · Fogón y música" data-sun="#ff8a3d" data-night="1"><summary><div class="wrap row"><time>18:30</time><span class="line"><span class="what">Fogón con violín y contrabajo</span><span class="who">Música en vivo</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+  <div class="wrap duo-wrap">
+    <div class="mini">
+      
+      <p class="body" style="color:var(--soft-night)">Cerramos el día alrededor del fuego, con una hora de música en vivo a cargo de un dúo de violín y contrabajo. <span class="tbd">nombres del dúo</span> <span class="tbd">¿se corre a 19:30–20:30 para la puesta de sol?</span></p>
+    </div>
+    <svg class="duo" viewBox="-190 -365 520 600" role="img" aria-label="Ilustración de un contrabajo y un violín">
+<g transform="translate(-30,-120) rotate(-6)"><path class="b" d="M0.0,-3.0 C5.0,-3.0 10.0,-3.5 15.0,0.0 C20.0,3.5 24.0,11.0 30.0,18.0 C36.0,25.0 44.8,34.0 51.0,42.0 C57.3,50.0 64.2,58.0 67.5,66.0 C70.8,74.0 71.0,83.0 70.5,90.0 C70.0,97.0 67.5,102.0 64.5,108.0 C61.5,114.0 55.0,120.0 52.5,126.0 C50.0,132.0 49.2,137.5 49.5,144.0 C49.8,150.5 50.8,159.0 54.0,165.0 C57.2,171.0 64.0,173.5 69.0,180.0 C74.0,186.5 80.3,195.0 84.0,204.0 C87.8,213.0 91.0,224.0 91.5,234.0 C92.0,244.0 91.2,255.0 87.0,264.0 C82.8,273.0 76.0,282.2 66.0,288.0 C56.0,293.8 38.0,296.0 27.0,298.5 C16.0,301.0 9.0,303.0 0.0,303.0 C-9.0,303.0 -16.0,301.0 -27.0,298.5 C-38.0,296.0 -56.0,293.8 -66.0,288.0 C-76.0,282.2 -82.8,273.0 -87.0,264.0 C-91.2,255.0 -92.0,244.0 -91.5,234.0 C-91.0,224.0 -87.8,213.0 -84.0,204.0 C-80.3,195.0 -74.0,186.5 -69.0,180.0 C-64.0,173.5 -57.2,171.0 -54.0,165.0 C-50.8,159.0 -49.8,150.5 -49.5,144.0 C-49.2,137.5 -50.0,132.0 -52.5,126.0 C-55.0,120.0 -61.5,114.0 -64.5,108.0 C-67.5,102.0 -70.0,97.0 -70.5,90.0 C-71.0,83.0 -70.8,74.0 -67.5,66.0 C-64.2,58.0 -57.3,50.0 -51.0,42.0 C-44.8,34.0 -36.0,25.0 -30.0,18.0 C-24.0,11.0 -20.0,3.5 -15.0,0.0 C-10.0,-3.5 -5.0,-3.0 0.0,-3.0 Z"/>
+<path class="t" d="M0.0,4.5 C3.2,4.5 8.0,6.0 9.6,6.0 C11.2,6.0 7.1,2.5 9.6,4.5 C12.1,6.5 18.6,11.8 24.6,18.0 C30.6,24.2 39.4,34.0 45.6,42.0 C51.9,50.0 58.9,58.0 62.1,66.0 C65.4,74.0 65.6,83.0 65.1,90.0 C64.6,97.0 62.1,102.0 59.1,108.0 C56.1,114.0 49.6,120.0 47.1,126.0 C44.6,132.0 43.9,137.5 44.1,144.0 C44.4,150.5 45.4,159.0 48.6,165.0 C51.9,171.0 58.6,173.5 63.6,180.0 C68.6,186.5 74.9,195.0 78.6,204.0 C82.4,213.0 85.6,224.0 86.1,234.0 C86.6,244.0 85.8,255.0 81.6,264.0 C77.3,273.0 70.6,282.8 60.6,288.0 C50.6,293.2 28.1,294.5 21.6,295.5 C15.1,296.5 25.2,294.0 21.6,294.0 C18.0,294.0 7.2,295.5 0.0,295.5 C-7.2,295.5 -18.0,294.0 -21.6,294.0 C-25.2,294.0 -15.1,296.5 -21.6,295.5 C-28.1,294.5 -50.6,293.2 -60.6,288.0 C-70.6,282.8 -77.3,273.0 -81.6,264.0 C-85.8,255.0 -86.6,244.0 -86.1,234.0 C-85.6,224.0 -82.4,213.0 -78.6,204.0 C-74.9,195.0 -68.6,186.5 -63.6,180.0 C-58.6,173.5 -51.9,171.0 -48.6,165.0 C-45.4,159.0 -44.4,150.5 -44.1,144.0 C-43.9,137.5 -44.6,132.0 -47.1,126.0 C-49.6,120.0 -56.1,114.0 -59.1,108.0 C-62.1,102.0 -64.6,97.0 -65.1,90.0 C-65.6,83.0 -65.4,74.0 -62.1,66.0 C-58.9,58.0 -51.9,50.0 -45.6,42.0 C-39.4,34.0 -30.6,24.2 -24.6,18.0 C-18.6,11.8 -12.1,6.5 -9.6,4.5 C-7.1,2.5 -11.2,6.0 -9.6,6.0 C-8.0,6.0 -3.2,4.5 0.0,4.5 Z"/>
+<path class="b" d="M-6.1,-157.4 L-11.0,90.0 L11.0,90.0 L6.1,-157.4 Z"/>
+<path class="b" d="M-6.6,-157.4 Q-9.9,-173.0 -2.6,-183.4 M6.6,-157.4 Q9.9,-173.0 5.2,-180.8"/>
+<path class="b" d="M10.5,-178.4 L10.1,-177.9 L9.6,-177.4 L9.1,-177.0 L8.6,-176.6 L8.1,-176.2 L7.6,-175.8 L7.0,-175.5 L6.5,-175.2 L5.9,-175.0 L5.3,-174.7 L4.7,-174.5 L4.1,-174.4 L3.5,-174.2 L2.9,-174.1 L2.3,-174.0 L1.7,-174.0 L1.1,-174.0 L0.5,-174.0 L-0.2,-174.1 L-0.7,-174.1 L-1.3,-174.2 L-1.9,-174.4 L-2.5,-174.5 L-3.0,-174.7 L-3.6,-174.9 L-4.1,-175.2 L-4.6,-175.5 L-5.1,-175.8 L-5.6,-176.1 L-6.1,-176.4 L-6.5,-176.8 L-6.9,-177.2 L-7.3,-177.6 L-7.7,-178.0 L-8.1,-178.4 L-8.4,-178.9 L-8.7,-179.3 L-9.0,-179.8 L-9.2,-180.3 L-9.5,-180.8 L-9.7,-181.3 L-9.8,-181.8 L-10.0,-182.3 L-10.1,-182.9 L-10.2,-183.4 L-10.2,-183.9 L-10.3,-184.4 L-10.3,-185.0 L-10.3,-185.5 L-10.2,-186.0 L-10.2,-186.5 L-10.1,-187.0 L-10.0,-187.5 L-9.8,-188.0 L-9.6,-188.5 L-9.5,-188.9 L-9.2,-189.4 L-9.0,-189.8 L-8.8,-190.3 L-8.5,-190.7 L-8.2,-191.1 L-7.9,-191.4 L-7.6,-191.8 L-7.2,-192.1 L-6.9,-192.4 L-6.5,-192.7 L-6.1,-193.0 L-5.7,-193.3 L-5.3,-193.5 L-4.9,-193.7 L-4.5,-193.9 L-4.0,-194.1 L-3.6,-194.2 L-3.2,-194.3 L-2.7,-194.4 L-2.3,-194.5 L-1.9,-194.5 L-1.4,-194.6 L-1.0,-194.6 L-0.5,-194.6 L-0.1,-194.5 L0.3,-194.5 L0.7,-194.4 L1.2,-194.3 L1.6,-194.2 L2.0,-194.0 L2.3,-193.9 L2.7,-193.7 L3.1,-193.5 L3.4,-193.3 L3.8,-193.0 L4.1,-192.8 L4.4,-192.5 L4.7,-192.3 L4.9,-192.0 L5.2,-191.7 L5.4,-191.4 L5.7,-191.1 L5.9,-190.7 L6.0,-190.4 L6.2,-190.1 L6.4,-189.7 L6.5,-189.4 L6.6,-189.0 L6.7,-188.7 L6.8,-188.3 L6.8,-187.9 L6.9,-187.6 L6.9,-187.2 L6.9,-186.9 L6.8,-186.5 L6.8,-186.2 L6.8,-185.8 L6.7,-185.5 L6.6,-185.2 L6.5,-184.8 L6.4,-184.5 L6.2,-184.2 L6.1,-183.9 L5.9,-183.7 L5.7,-183.4 L5.6,-183.1 L5.4,-182.9 L5.1,-182.6 L4.9,-182.4 L4.7,-182.2 L4.5,-182.0 L4.2,-181.8 L4.0,-181.7 L3.7,-181.5 L3.4,-181.4 L3.2,-181.3 L2.9,-181.2 L2.6,-181.1 L2.4,-181.0 L2.1,-180.9 L1.8,-180.9 L1.5,-180.8 L1.3,-180.8 L1.0,-180.8 L0.7,-180.8 L0.5,-180.9 L0.2,-180.9 L-0.1,-181.0 L-0.3,-181.0 L-0.6,-181.1 L-0.8,-181.2 L-1.0,-181.3 L-1.2,-181.4 L-1.5,-181.5 L-1.7,-181.6 L-1.9,-181.8 L-2.0,-181.9 L-2.2,-182.1 L-2.4,-182.3 L-2.5,-182.4 L-2.7,-182.6 L-2.8,-182.8 L-2.9,-183.0 L-3.0,-183.2 L-3.1,-183.3 L-3.2,-183.5 L-3.3,-183.7 L-3.4,-183.9 L-3.4,-184.1 L-3.4,-184.3 L-3.5,-184.5 L-3.5,-184.7 L-3.5,-184.9 L-3.5,-185.1 L-3.5,-185.3 L-3.5,-185.5 L-3.4,-185.7 L-3.4,-185.8 L-3.3,-186.0 L-3.3,-186.2 L-3.2,-186.3 L-3.1,-186.5 L-3.0,-186.6 L-3.0,-186.8 L-2.9,-186.9 L-2.8,-187.0 L-2.7,-187.1 L-2.5,-187.2 L-2.4,-187.3 L-2.3,-187.4 L-2.2,-187.5 L-2.1,-187.6 L-2.0,-187.7 L-1.8,-187.7 L-1.7,-187.8 L-1.6,-187.8 L-1.4,-187.8 L-1.3,-187.9 L-1.2,-187.9 L-1.1,-187.9 L-0.9,-187.9 L-0.8,-187.9 L-0.7,-187.9"/>
+<circle class="t" cx="-17.6" cy="-147.0" r="3.6"/><path class="t" d="M-7.7,-147.0 L-14.9,-147.0"/>
+<circle class="t" cx="17.6" cy="-154.2" r="3.6"/><path class="t" d="M7.7,-154.2 L14.9,-154.2"/>
+<circle class="t" cx="-17.6" cy="-161.3" r="3.6"/><path class="t" d="M-7.7,-161.3 L-14.9,-161.3"/>
+<circle class="t" cx="17.6" cy="-168.5" r="3.6"/><path class="t" d="M7.7,-168.5 L14.9,-168.5"/>
+<path class="b" d="M-25.5,120.0 C-40.5,138.0 -22.5,168.0 -37.5,189.0"/><circle class="f" cx="-25.5" cy="120.0" r="3.6"/><circle class="f" cx="-37.5" cy="189.0" r="3.6"/>
+<path class="b" d="M25.5,120.0 C40.5,138.0 22.5,168.0 37.5,189.0"/><circle class="f" cx="25.5" cy="120.0" r="3.6"/><circle class="f" cx="37.5" cy="189.0" r="3.6"/>
+<path class="b" d="M-33.0,162.0 Q0,145.5 33.0,162.0"/>
+<path class="b" d="M-21.0,198.0 L-10.5,285.0 L10.5,285.0 L21.0,198.0 Z"/>
+<path class="s" d="M-5.5,-157.4 L-18.0,199.5"/>
+<path class="s" d="M-1.8,-157.4 L-6.0,199.5"/>
+<path class="s" d="M1.8,-157.4 L6.0,199.5"/>
+<path class="s" d="M5.5,-157.4 L18.0,199.5"/>
+<path class="b" d="M0,300.0 L0,336.0"/></g>
+<g transform="translate(170,40) rotate(22)"><path class="b" d="M0.0,-2.0 C3.4,-2.0 5.4,-1.5 10.2,0.0 C15.0,1.5 24.2,3.7 28.9,6.8 C33.6,9.9 36.4,14.2 38.2,18.7 C40.1,23.2 40.2,28.9 39.9,34.0 C39.7,39.1 37.5,44.9 36.5,49.3 C35.6,53.7 35.4,57.2 34.0,60.3 C32.6,63.5 29.3,64.7 28.1,68.0 C26.8,71.3 26.6,75.9 26.7,79.9 C26.8,83.9 26.9,88.5 28.6,91.8 C30.2,95.1 33.8,96.3 36.5,99.4 C39.3,102.6 42.9,105.8 45.1,110.5 C47.2,115.2 49.0,121.5 49.3,127.5 C49.6,133.4 49.0,140.5 46.8,146.2 C44.5,151.9 40.9,157.7 35.7,161.5 C30.5,165.3 21.2,167.4 15.3,169.2 C9.3,170.9 5.1,172.0 0.0,172.0 C-5.1,172.0 -9.3,170.9 -15.3,169.2 C-21.2,167.4 -30.5,165.3 -35.7,161.5 C-40.9,157.7 -44.5,151.9 -46.8,146.2 C-49.0,140.5 -49.6,133.4 -49.3,127.5 C-49.0,121.5 -47.2,115.2 -45.1,110.5 C-42.9,105.8 -39.3,102.6 -36.5,99.4 C-33.8,96.3 -30.2,95.1 -28.6,91.8 C-26.9,88.5 -26.8,83.9 -26.7,79.9 C-26.6,75.9 -26.8,71.3 -28.1,68.0 C-29.3,64.7 -32.6,63.5 -34.0,60.3 C-35.4,57.2 -35.6,53.7 -36.5,49.3 C-37.5,44.9 -39.7,39.1 -39.9,34.0 C-40.2,28.9 -40.1,23.2 -38.2,18.7 C-36.4,14.2 -33.6,9.9 -28.9,6.8 C-24.2,3.7 -15.0,1.5 -10.2,0.0 C-5.4,-1.5 -3.4,-2.0 0.0,-2.0 Z"/>
+<path class="t" d="M0.0,2.5 C2.4,2.5 5.9,3.4 7.1,3.4 C8.3,3.4 4.0,2.0 7.1,2.5 C10.3,3.1 21.2,4.1 25.8,6.8 C30.5,9.5 33.3,14.2 35.2,18.7 C37.0,23.2 37.2,28.9 36.9,34.0 C36.6,39.1 34.5,44.9 33.5,49.3 C32.5,53.7 32.4,57.2 30.9,60.3 C29.5,63.5 26.2,64.7 25.0,68.0 C23.8,71.3 23.5,75.9 23.6,79.9 C23.7,83.9 23.9,88.5 25.5,91.8 C27.1,95.1 30.7,96.3 33.5,99.4 C36.2,102.6 39.9,105.8 42.0,110.5 C44.1,115.2 46.0,121.5 46.2,127.5 C46.5,133.4 46.0,140.5 43.7,146.2 C41.4,151.9 37.9,158.0 32.6,161.5 C27.4,165.0 15.6,166.6 12.2,167.4 C8.8,168.3 14.3,166.6 12.2,166.6 C10.2,166.6 4.1,167.4 0.0,167.4 C-4.1,167.4 -10.2,166.6 -12.2,166.6 C-14.3,166.6 -8.8,168.3 -12.2,167.4 C-15.6,166.6 -27.4,165.0 -32.6,161.5 C-37.9,158.0 -41.4,151.9 -43.7,146.2 C-46.0,140.5 -46.5,133.4 -46.2,127.5 C-46.0,121.5 -44.1,115.2 -42.0,110.5 C-39.9,105.8 -36.2,102.6 -33.5,99.4 C-30.7,96.3 -27.1,95.1 -25.5,91.8 C-23.9,88.5 -23.7,83.9 -23.6,79.9 C-23.5,75.9 -23.8,71.3 -25.0,68.0 C-26.2,64.7 -29.5,63.5 -30.9,60.3 C-32.4,57.2 -32.5,53.7 -33.5,49.3 C-34.5,44.9 -36.6,39.1 -36.9,34.0 C-37.2,28.9 -37.0,23.2 -35.2,18.7 C-33.3,14.2 -30.5,9.5 -25.8,6.8 C-21.2,4.1 -10.3,3.1 -7.1,2.5 C-4.0,2.0 -8.3,3.4 -7.1,3.4 C-5.9,3.4 -2.4,2.5 0.0,2.5 Z"/>
+<path class="b" d="M-3.3,-90.0 L-6.0,51.0 L6.0,51.0 L3.3,-90.0 Z"/>
+<path class="b" d="M-3.6,-90.0 Q-5.4,-98.4 -1.4,-104.0 M3.6,-90.0 Q5.4,-98.4 2.8,-102.6"/>
+<path class="b" d="M5.7,-101.3 L5.4,-101.0 L5.2,-100.8 L4.9,-100.5 L4.6,-100.3 L4.4,-100.1 L4.1,-99.9 L3.8,-99.8 L3.5,-99.6 L3.2,-99.5 L2.9,-99.3 L2.5,-99.2 L2.2,-99.1 L1.9,-99.1 L1.6,-99.0 L1.2,-99.0 L0.9,-98.9 L0.6,-98.9 L0.2,-98.9 L-0.1,-99.0 L-0.4,-99.0 L-0.7,-99.1 L-1.0,-99.1 L-1.3,-99.2 L-1.6,-99.3 L-1.9,-99.4 L-2.2,-99.6 L-2.5,-99.7 L-2.8,-99.9 L-3.0,-100.1 L-3.3,-100.2 L-3.5,-100.4 L-3.7,-100.6 L-4.0,-100.9 L-4.2,-101.1 L-4.3,-101.3 L-4.5,-101.6 L-4.7,-101.8 L-4.8,-102.1 L-5.0,-102.3 L-5.1,-102.6 L-5.2,-102.9 L-5.3,-103.1 L-5.4,-103.4 L-5.4,-103.7 L-5.5,-104.0 L-5.5,-104.3 L-5.5,-104.6 L-5.5,-104.8 L-5.5,-105.1 L-5.5,-105.4 L-5.5,-105.7 L-5.4,-105.9 L-5.4,-106.2 L-5.3,-106.5 L-5.2,-106.7 L-5.1,-107.0 L-5.0,-107.2 L-4.9,-107.5 L-4.7,-107.7 L-4.6,-107.9 L-4.4,-108.1 L-4.2,-108.3 L-4.1,-108.5 L-3.9,-108.7 L-3.7,-108.9 L-3.5,-109.0 L-3.3,-109.2 L-3.1,-109.3 L-2.9,-109.4 L-2.6,-109.6 L-2.4,-109.7 L-2.2,-109.7 L-1.9,-109.8 L-1.7,-109.9 L-1.5,-109.9 L-1.2,-110.0 L-1.0,-110.0 L-0.8,-110.0 L-0.5,-110.0 L-0.3,-110.0 L-0.1,-110.0 L0.2,-110.0 L0.4,-109.9 L0.6,-109.9 L0.8,-109.8 L1.1,-109.7 L1.3,-109.6 L1.5,-109.5 L1.7,-109.4 L1.8,-109.3 L2.0,-109.2 L2.2,-109.1 L2.4,-108.9 L2.5,-108.8 L2.7,-108.6 L2.8,-108.5 L2.9,-108.3 L3.0,-108.1 L3.2,-107.9 L3.3,-107.8 L3.3,-107.6 L3.4,-107.4 L3.5,-107.2 L3.6,-107.0 L3.6,-106.8 L3.6,-106.6 L3.7,-106.4 L3.7,-106.2 L3.7,-106.1 L3.7,-105.9 L3.7,-105.7 L3.7,-105.5 L3.6,-105.3 L3.6,-105.1 L3.6,-105.0 L3.5,-104.8 L3.4,-104.6 L3.4,-104.4 L3.3,-104.3 L3.2,-104.1 L3.1,-104.0 L3.0,-103.9 L2.9,-103.7 L2.8,-103.6 L2.7,-103.5 L2.5,-103.4 L2.4,-103.3 L2.3,-103.2 L2.1,-103.1 L2.0,-103.0 L1.9,-102.9 L1.7,-102.8 L1.6,-102.8 L1.4,-102.7 L1.3,-102.7 L1.1,-102.7 L1.0,-102.6 L0.8,-102.6 L0.7,-102.6 L0.5,-102.6 L0.4,-102.6 L0.2,-102.6 L0.1,-102.7 L-0.0,-102.7 L-0.2,-102.7 L-0.3,-102.8 L-0.4,-102.8 L-0.6,-102.9 L-0.7,-102.9 L-0.8,-103.0 L-0.9,-103.1 L-1.0,-103.1 L-1.1,-103.2 L-1.2,-103.3 L-1.3,-103.4 L-1.4,-103.5 L-1.4,-103.6 L-1.5,-103.7 L-1.6,-103.8 L-1.6,-103.9 L-1.7,-104.0 L-1.7,-104.1 L-1.8,-104.2 L-1.8,-104.3 L-1.8,-104.4 L-1.9,-104.5 L-1.9,-104.6 L-1.9,-104.7 L-1.9,-104.8 L-1.9,-104.9 L-1.9,-105.0 L-1.9,-105.1 L-1.8,-105.2 L-1.8,-105.3 L-1.8,-105.4 L-1.8,-105.5 L-1.7,-105.6 L-1.7,-105.7 L-1.6,-105.7 L-1.6,-105.8 L-1.5,-105.9 L-1.5,-105.9 L-1.4,-106.0 L-1.4,-106.1 L-1.3,-106.1 L-1.2,-106.2 L-1.2,-106.2 L-1.1,-106.3 L-1.1,-106.3 L-1.0,-106.3 L-0.9,-106.3 L-0.8,-106.4 L-0.8,-106.4 L-0.7,-106.4 L-0.6,-106.4 L-0.6,-106.4 L-0.5,-106.4 L-0.4,-106.4 L-0.4,-106.4"/>
+<path class="t" d="M-4.2,-84.4 L-11.4,-86.4"/>
+<path class="t" d="M4.2,-88.2 L11.4,-90.2"/>
+<path class="t" d="M-4.2,-92.1 L-11.4,-94.1"/>
+<path class="t" d="M4.2,-95.9 L11.4,-97.9"/>
+<path class="b" d="M-14.4,68.0 C-22.9,78.2 -12.7,95.2 -21.2,107.1"/><circle class="f" cx="-14.4" cy="68.0" r="2.0"/><circle class="f" cx="-21.2" cy="107.1" r="2.0"/>
+<path class="b" d="M14.4,68.0 C22.9,78.2 12.7,95.2 21.2,107.1"/><circle class="f" cx="14.4" cy="68.0" r="2.0"/><circle class="f" cx="21.2" cy="107.1" r="2.0"/>
+<path class="b" d="M-18.7,91.8 Q0,82.5 18.7,91.8"/>
+<path class="b" d="M-11.9,112.2 L-6.0,161.5 L6.0,161.5 L11.9,112.2 Z"/>
+<path class="s" d="M-3.0,-90.0 L-10.2,113.1"/>
+<path class="s" d="M-1.0,-90.0 L-3.4,113.1"/>
+<path class="s" d="M1.0,-90.0 L3.4,113.1"/>
+<path class="s" d="M3.0,-90.0 L10.2,113.1"/>
+<path class="b" d="M-10.2,146.2 Q-27.2,158.1 -20.4,168.3 L0.0,168.3"/></g>
+<g transform="translate(60,170) rotate(0)"><path class="b" d="M-60,40 L230,-150"/><path class="t" d="M-56,46 Q90,-40 236,-142"/></g>
+<circle class="sp" cx="40" cy="-260" r="2.2"/><circle class="sp" cx="70" cy="-300" r="1.6"/><circle class="sp" cx="18" cy="-330" r="1.2"/><circle class="sp" cx="95" cy="-345" r="1.8"/><circle class="sp" cx="130" cy="-280" r="1.3"/><circle class="sp" cx="-20" cy="-290" r="1.5"/>
+</svg>
+  </div>
+</details>
+</main>
+
+<section class="night" id="reserva" data-clock="Reservá tu lugar" data-sun="#ff8a3d" data-night="1">
+  <div class="wrap">
+    <h2>Inscribite</h2>
+    <p class="soft" style="margin-top:12px; max-width:56ch">Precio de lanzamiento, primera edición. Sube por etapas: cuanto antes reservás, menos pagás. Incluye las cuatro prácticas, almuerzo, merienda, bebidas, café concert y fogón con música en vivo. <span class="tbd">confirmar qué incluye</span></p>
+    <div class="prices">
+      <div class="price now"><span class="label">Early bird · ahora</span><span class="amount">$ 2.800</span><span class="when">Primeras 20 entradas o hasta el 5 de noviembre · quedan 20</span></div>
+      <div class="price"><span class="label">Segunda etapa</span><span class="amount">$ 3.000</span><span class="when">Del 6 al 13 de noviembre <span class="tbd">fechas a confirmar</span></span></div>
+      <div class="price"><span class="label">Última semana</span><span class="amount">$ 3.200</span><span class="when">Del 14 de noviembre en adelante <span class="tbd">fechas a confirmar</span></span></div>
+    </div>
+    <details class="formbox" id="form-box">
+      <summary class="btn"><span class="closed">Quiero inscribirme</span><span class="opened">Cerrar formulario</span></summary>
+    <form class="reg" id="inscripcion" novalidate>
+      <fieldset class="step">
+        <legend><span class="n">1</span> ¿Cuántas entradas?</legend>
+        <div class="qty">
+          <button type="button" class="qbtn" id="q-minus" aria-label="Una entrada menos">−</button>
+          <output id="q-val" aria-live="polite">1</output>
+          <button type="button" class="qbtn" id="q-plus" aria-label="Una entrada más">+</button>
+          <p class="total">Total <b id="q-total">$ 2.800</b> <small>· $ 2.800 c/u, early bird</small></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend><span class="n">2</span> Datos de cada asistente</legend>
+        <p class="soft small">Los pedimos para el seguro del evento.</p>
+        <div id="people"></div>
+        <div class="grid2">
+          <label>Celular de contacto<input id="r-cel" name="celular" type="tel" inputmode="tel" autocomplete="tel" required placeholder="09X XXX XXX"></label>
+          <label><span>Email <span class="opt-l">(para la confirmación)</span></span><input id="r-mail" name="email" type="email" autocomplete="email" required></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend><span class="n">3</span> Forma de pago</legend>
+        <div class="paygrid">
+          <label class="payopt"><input type="radio" name="pago" value="transferencia" id="p-tr" checked><span><b>Transferencia bancaria</b><small>Sin recargo. Te mostramos los datos al confirmar.</small></span></label>
+          <label class="payopt"><input type="radio" name="pago" value="tarjeta" id="p-mp"><span><b>Tarjeta de crédito o débito</b><small>Pagás en el checkout de Mercado Pago.</small></span></label>
+        </div>
+      </fieldset>
+
+      <div class="consents">
+        <label class="consent"><input type="checkbox" id="r-ok" required> <span>Acepto que estos datos se usen solo para la inscripción y el seguro de la jornada. <span class="tbd">texto legal a revisar (Ley 18.331)</span></span></label>
+        <label class="consent"><input type="checkbox" id="r-news" name="novedades"> <span>Quiero que Juan Diego Sagasti me avise de sus próximas experiencias. Me puedo dar de baja cuando quiera. <span class="opt-l">(opcional)</span></span></label>
+      </div>
+      <p class="err" id="r-err" role="alert" hidden></p>
+      <input type="text" id="r-sitio" name="sitio" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn" id="r-go">Confirmar inscripción</button>
+    </form>
+
+    <div class="done" id="r-done" hidden tabindex="-1">
+      <div id="done-tr">
+        <p class="opt-k">Último paso: transferí <b id="d-total">$ 2.800</b></p>
+        <p class="soft small">Tu código es <b id="d-code"></b>. Te guardamos el lugar hasta el <span id="d-vence"></span>. También te lo mandamos por mail.</p>
+        <dl class="acct">
+          <div><dt>Titular</dt><dd>Juan Diego Sagasti</dd></div>
+          <div><dt>Moneda</dt><dd>Pesos uruguayos (UYU)</dd></div>
+          <div><dt>Desde Santander</dt><dd><span id="acc-1">1646915</span> · sucursal 37 <button type="button" class="copy" data-copy="1646915" data-sel="acc-1">Copiar</button></dd></div>
+          <div><dt>Desde otros bancos</dt><dd><span id="acc-2">0037000001646915</span> <button type="button" class="copy" data-copy="0037000001646915" data-sel="acc-2">Copiar</button></dd></div>
+          <div><dt>Concepto</dt><dd><b id="d-code2"></b> <span class="soft small">(poné este código)</span></dd></div>
+        </dl>
+        <div class="up">
+          <label for="r-file">Subí la foto del comprobante <span class="opt-l">(opcional, nos ayuda a confirmarte más rápido)</span></label>
+          <input type="file" id="r-file" accept="image/*,application/pdf">
+          <p class="soft small" id="r-upmsg" aria-live="polite"></p>
+        </div>
+        <p class="soft small">Cuando recibimos la transferencia te mandamos por mail tu entrada con un código QR.</p>
+      </div>
+      <div id="done-ret" hidden>
+        <p class="opt-k" id="ret-t"></p>
+        <p class="soft small" id="ret-d"></p>
+      </div>
+      <div id="done-mp" hidden>
+        <p class="opt-k">Te llevamos a Mercado Pago…</p>
+        <p class="soft small">Si no se abre solo, <a id="d-mp" href="#">tocá acá para pagar</a>.</p>
+      </div>
+    </div>
+    </details>
+
+    <p class="soft confirm">¿Dudas antes de inscribirte? <a href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener">Escribinos por WhatsApp al 092 594 179</a>.</p>
+    <details class="info" id="info">
+      <summary><span>Cómo llegar, qué traer y preguntas</span><span class="tog" aria-hidden="true"></span></summary>
+    <dl class="practical">
+      <div><dt>Dónde</dt><dd>Ruta 12 km 8,5, Punta Ballena, Maldonado. <a href="https://www.google.com/maps/search/?api=1&amp;query=Ruta+12+km+8.5+Punta+Ballena+Maldonado" target="_blank" rel="noopener">Abrir en el mapa</a> <span class="tbd">pin exacto · ¿estacionamiento? ¿transporte?</span></dd></div>
+      <div><dt>Qué traer</dt><dd>Ropa cómoda, abrigo para la tarde, manta o almohadón para el gong, protector solar, gorro y botella reutilizable. <span class="tbd">¿mat propio?</span></dd></div>
+      <div><dt>Experiencia previa</dt><dd>No hace falta: las prácticas son para cualquier nivel. <span class="tbd">confirmar</span></dd></div>
+      <div><dt>Pago</dt><dd>Transferencia bancaria sin recargo, o tarjeta de crédito o débito por Mercado Pago. <span class="tbd">política si no podés venir</span></dd></div>
+      <div><dt>Si llueve</dt><dd><span class="tbd">plan B a definir</span></dd></div>
+      <div><dt>Comida</dt><dd>Avisanos al reservar si tenés alguna restricción.</dd></div>
+    </dl>
+    </details>
+  </div>
+</section>
+<a class="wa-fab" href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener" aria-label="Consultas por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Consultas</span></a>
+<footer><div class="wrap">Sábado 21 de noviembre de 2026 · Chacra El Paraíso · Punta Ballena</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script>
+(function () {
+  var rail = document.getElementById('rail');
+  var tip = document.getElementById('rail-tip');
+  function placeTip() {
+    var on = rail.querySelector('a.on');
+    if (!on || rail.hidden) { tip.hidden = true; return; }
+    tip.textContent = on.querySelector('.lbl').textContent;
+    tip.hidden = false;
+    var r = on.getBoundingClientRect();
+    tip.style.top = Math.round(r.top + r.height / 2 - tip.offsetHeight / 2) + 'px';
+  }
+  window.addEventListener('resize', placeTip);
+  var links = Array.prototype.slice.call(rail.querySelectorAll('a'));
+  var hero = document.querySelector('.hero');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function openAndGo(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === 'DETAILS') el.open = true;
+    el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.menu a[data-go]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var t = a.getAttribute('data-go');
+      if (t === 'reserva') document.getElementById('form-box').open = true;
+      openAndGo(t);
+    });
+  });
+  var heroCta = document.querySelector('[data-open-form]');
+  if (heroCta) heroCta.addEventListener('click', function (e) { e.preventDefault(); document.getElementById('form-box').open = true; openAndGo('reserva'); });
+  var CFG = window.EL_PARAISO, sb = (CFG && window.supabase) ? window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_KEY) : null;
+  var PRICE_T = 2800, PRICE_C = 3150, TRAMO = 'early bird', MAX = 6, qty = 1, SENDING = false;
+  var PRICE = PRICE_T;
+  function metodo() { return document.getElementById('p-mp').checked ? 'tarjeta' : 'transferencia'; }
+  var people = document.getElementById('people');
+  var fmt = function (n) { return '$ ' + n.toLocaleString('es-UY'); };
+  function ciOk(v) {
+    var d = String(v).replace(/\D/g, '');
+    if (d.length < 7 || d.length > 8) return false;
+    d = d.padStart(8, '0');
+    var w = [2, 9, 8, 7, 6, 3, 4], sum = 0;
+    for (var i = 0; i < 7; i++) sum += Number(d[i]) * w[i];
+    return (10 - (sum % 10)) % 10 === Number(d[7]);
+  }
+  function card(i) {
+    var el = document.createElement('div');
+    el.className = 'person';
+    el.innerHTML = '<h4>' + (i === 0 ? 'Asistente 1 · quien reserva' : 'Asistente ' + (i + 1)) + '</h4>' +
+      '<div class="grid2">' +
+      '<label>Nombre<input type="text" id="p' + i + '-nom" autocomplete="' + (i === 0 ? 'given-name' : 'off') + '" required></label>' +
+      '<label>Apellido<input type="text" id="p' + i + '-ape" autocomplete="' + (i === 0 ? 'family-name' : 'off') + '" required></label>' +
+      '<label>Cédula de identidad<input type="text" id="p' + i + '-ci" inputmode="numeric" placeholder="1.234.567-2" required><span class="hintline" id="p' + i + '-cih"></span></label>' +
+      '<label>Fecha de nacimiento<input type="date" id="p' + i + '-nac" required max="2026-11-21"></label>' +
+      '</div>';
+    return el;
+  }
+  function render() {
+    while (people.children.length < qty) people.appendChild(card(people.children.length));
+    while (people.children.length > qty) people.removeChild(people.lastChild);
+    document.getElementById('q-val').textContent = qty;
+    PRICE = metodo() === 'tarjeta' ? PRICE_C : PRICE_T;
+    document.getElementById('q-total').textContent = fmt(PRICE * qty);
+    document.querySelector('.total small').textContent = '· ' + fmt(PRICE) + ' c/u, ' + TRAMO + (metodo() === 'tarjeta' ? ', con tarjeta' : '');
+    document.getElementById('q-minus').disabled = qty <= 1;
+    document.getElementById('q-plus').disabled = qty >= MAX;
+  }
+  document.getElementById('q-minus').addEventListener('click', function () { if (qty > 1) { qty--; render(); } });
+  document.getElementById('q-plus').addEventListener('click', function () { if (qty < MAX) { qty++; render(); } });
+  render();
+  document.getElementById('p-tr').addEventListener('change', render);
+  document.getElementById('p-mp').addEventListener('change', render);
+  if (sb) sb.rpc('estado_venta').then(function (r) {
+    var v = r.data;
+    if (!v) return;
+    if (!v.tramo) {
+      document.getElementById('form-box').innerHTML = '<p class="opt-k">Las inscripciones están cerradas</p><p class="soft">' + (v.libres_total === 0 ? 'Se completó el cupo.' : 'Escribinos por WhatsApp para consultar.') + '</p>';
+      return;
+    }
+    PRICE_T = v.precio_transfer; PRICE_C = v.precio_tarjeta; TRAMO = v.nombre.toLowerCase();
+    var hp = document.querySelector('.hero .price-tag .amount'); if (hp) hp.textContent = fmt(PRICE_T);
+    var hs = document.querySelector('.hero .price-tag small'); if (hs) hs.textContent = v.nombre + ' · precio de lanzamiento';
+    var now = document.querySelector('.price.now .when');
+    if (now && v.tramo === 'early' && v.libres_tramo != null) now.textContent = 'Primeras 20 entradas o hasta el 5 de noviembre · quedan ' + v.libres_tramo;
+    render();
+  });
+  people.addEventListener('blur', function (e) {
+    var t = e.target;
+    if (!/-ci$/.test(t.id) || !t.value) return;
+    var ok = ciOk(t.value);
+    t.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    document.getElementById(t.id + 'h').textContent = ok ? '' : 'Revisá la cédula: el dígito verificador no coincide.';
+  }, true);
+  function showDone(which) {
+    ['done-tr', 'done-mp', 'done-ret'].forEach(function (id) { document.getElementById(id).hidden = id !== which; });
+    var done = document.getElementById('r-done');
+    done.hidden = false; done.focus();
+    done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+  var lastUpload = null;
+  document.getElementById('inscripcion').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (SENDING) return;
+    var err = document.getElementById('r-err'), bad = null, form = this;
+    form.querySelectorAll('input[required]').forEach(function (inp) {
+      var empty = inp.type === 'checkbox' ? !inp.checked : !inp.value.trim();
+      var wrong = !empty && /-ci$/.test(inp.id) && !ciOk(inp.value);
+      if (inp.type !== 'checkbox') inp.setAttribute('aria-invalid', (empty || wrong) ? 'true' : 'false');
+      if ((empty || wrong) && !bad) bad = inp;
+    });
+    if (bad) {
+      err.textContent = bad.type === 'checkbox' ? 'Falta aceptar el uso de los datos.' : 'Revisá los campos marcados en rojo.';
+      err.hidden = false; bad.focus(); return;
+    }
+    if (!CFG) { err.textContent = 'Esta vista previa no puede enviar inscripciones.'; err.hidden = false; return; }
+    err.hidden = true;
+    var asistentes = [];
+    for (var i = 0; i < qty; i++) {
+      asistentes.push({
+        nombre: document.getElementById('p' + i + '-nom').value.trim(),
+        apellido: document.getElementById('p' + i + '-ape').value.trim(),
+        ci: document.getElementById('p' + i + '-ci').value,
+        nacimiento: document.getElementById('p' + i + '-nac').value
+      });
+    }
+    var go = document.getElementById('r-go');
+    SENDING = true; go.disabled = true; go.textContent = 'Enviando…';
+    var res, data;
+    try {
+      res = await fetch(CFG.SUPABASE_URL + '/functions/v1/inscribir', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: CFG.SUPABASE_KEY },
+        body: JSON.stringify({
+          cantidad: qty, asistentes: asistentes, metodo: metodo(),
+          celular: document.getElementById('r-cel').value, email: document.getElementById('r-mail').value.trim(),
+          consentimiento: document.getElementById('r-ok').checked,
+          novedades: !!(document.getElementById('r-news') && document.getElementById('r-news').checked),
+          sitio: document.getElementById('r-sitio').value
+        })
+      });
+      data = await res.json();
+    } catch (x) { data = { error: 'red' }; }
+    SENDING = false; go.disabled = false; go.textContent = 'Confirmar inscripción';
+
+    if (!res || !res.ok) {
+      var msg = {
+        sin_lugar: 'No quedan lugares suficientes en este tramo. Probá con menos entradas o escribinos por WhatsApp.',
+        datos: 'Revisá los datos: algo no está bien' + ((data.campos || []).indexOf('ci_repetida') >= 0 ? ' (hay una cédula repetida).' : '.'),
+        mercadopago: 'No pudimos abrir Mercado Pago. Probá de nuevo o elegí transferencia.',
+        red: 'No hay conexión. Revisá internet y probá de nuevo.'
+      }[data && data.error] || 'Algo falló de nuestro lado. Probá de nuevo en un rato o escribinos por WhatsApp.';
+      (data.campos || []).forEach(function (c) {
+        var m = c.match(/^(ci|nombre|nacimiento)_(\d)$/);
+        if (m) { var el = document.getElementById('p' + m[2] + '-' + { ci: 'ci', nombre: 'nom', nacimiento: 'nac' }[m[1]]); if (el) el.setAttribute('aria-invalid', 'true'); }
+      });
+      err.textContent = msg; err.hidden = false; return;
+    }
+
+    if (data.checkout_url) {
+      document.getElementById('d-mp').href = data.checkout_url;
+      showDone('done-mp');
+      location.href = data.checkout_url;
+      return;
+    }
+    document.getElementById('d-total').textContent = fmt(data.total);
+    document.getElementById('d-code').textContent = data.codigo;
+    document.getElementById('d-code2').textContent = data.codigo;
+    document.getElementById('d-vence').textContent = new Date(data.vence_at).toLocaleString('es-UY', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+    lastUpload = data.comprobante;
+    form.hidden = true;
+    showDone('done-tr');
+  });
+  document.getElementById('r-file').addEventListener('change', async function () {
+    var f = this.files[0], msg = document.getElementById('r-upmsg');
+    if (!f || !lastUpload || !sb) return;
+    if (f.size > 10 * 1024 * 1024) { msg.textContent = 'El archivo pesa más de 10 MB. Probá con una foto más liviana.'; return; }
+    msg.textContent = 'Subiendo…';
+    var r = await sb.storage.from('comprobantes').uploadToSignedUrl(lastUpload.path, lastUpload.token, f, { contentType: f.type || 'application/octet-stream' });
+    msg.textContent = r.error ? 'No se pudo subir. No pasa nada: igual lo vemos en el banco.' : '¡Listo, recibimos el comprobante!';
+  });
+  (function retorno() {
+    var q = new URLSearchParams(location.search), p = q.get('pago');
+    if (!p) return;
+    var t = { ok: '¡Pago recibido!', pendiente: 'Tu pago está en proceso', error: 'El pago no se completó' }[p];
+    var d = {
+      ok: 'En unos minutos te llega por mail tu entrada con el código QR (' + (q.get('c') || '') + ').',
+      pendiente: 'Mercado Pago nos avisa cuando se acredite y ahí te mandamos la entrada por mail.',
+      error: 'No se cobró nada. Podés volver a intentar o elegir transferencia.'
+    }[p];
+    if (!t) return;
+    document.getElementById('ret-t').textContent = t;
+    document.getElementById('ret-d').textContent = d;
+    document.getElementById('form-box').open = true;
+    if (p !== 'error') document.getElementById('inscripcion').hidden = true;
+    setTimeout(function () { showDone('done-ret'); }, 300);
+  })();
+  document.addEventListener('click', function (e) {
+    var cp = e.target.closest && e.target.closest('.copy');
+    if (!cp) return;
+    var v = cp.getAttribute('data-copy');
+    var ok = function () { cp.textContent = 'Copiado'; setTimeout(function () { cp.textContent = 'Copiar'; }, 1800); };
+    var pick = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById(cp.getAttribute('data-sel'))); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); cp.textContent = 'Seleccionado'; };
+    try { navigator.clipboard.writeText(v).then(ok, pick); } catch (x) { pick(); }
+  });
+  links.forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); openAndGo(a.getAttribute('data-t').replace('-sunset', '')); });
+  });
+  if (location.hash && /^#[\w-]+$/.test(location.hash)) openAndGo(location.hash.slice(1));
+  if (!('IntersectionObserver' in window)) { rail.hidden = false; return; }
+  var cover = {};
+  var topIo = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { cover[e.target.className] = e.isIntersecting; });
+    var hide = Object.keys(cover).some(function (k) { return cover[k]; });
+    rail.hidden = hide; tip.hidden = hide || !tip.textContent;
+    if (!hide) placeTip();
+  });
+  topIo.observe(hero);
+  topIo.observe(document.querySelector('.menu'));
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var id = e.target.id;
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-t') === id); });
+      var night = e.target.hasAttribute('data-night');
+      rail.classList.toggle('is-night', night);
+      tip.classList.toggle('is-night', night);
+      placeTip();
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('details.hour, #reserva').forEach(function (m) { io.observe(m); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Panel · Un día en El Paraíso</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Albert+Sans:wght@400;500;600&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<style>
+  :root { --bg: #f4efe6; --card: #fffdf8; --ink: #17221f; --soft: #5d685f; --line: #e2d9c8; --amber: #a8640f; --ok: #1f7a45; --warn: #b26a00; --bad: #9b2c1c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Albert Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.45; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 20px max(16px, env(safe-area-inset-right)) 60px max(16px, env(safe-area-inset-left)); }
+  h1 { font-family: "Gloock", Georgia, serif; font-weight: 400; font-size: 1.9rem; margin: 0; }
+  h2 { font-family: "Gloock", Georgia, serif; font-weight: 400; font-size: 1.3rem; margin: 0 0 10px; }
+  header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; margin-bottom: 18px; }
+  .who { color: var(--soft); font-size: .9rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .stat b { display: block; font-family: "Gloock", Georgia, serif; font-weight: 400; font-size: 1.8rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--soft); font-size: .85rem; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .chip { font: inherit; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); cursor: pointer; }
+  .chip[aria-pressed=true] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  input[type=search], textarea { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  input[type=search] { flex: 1 1 180px; min-width: 0; }
+  button.act { font: inherit; font-size: .85rem; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--ink); background: transparent; cursor: pointer; }
+  button.act.main { background: var(--ok); border-color: var(--ok); color: #fff; }
+  button:disabled { opacity: .5; cursor: default; }
+  .list { display: grid; gap: 8px; }
+  .row { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px; }
+  .row.pagada { border-left-color: var(--ok); }
+  .row.pendiente { border-left-color: var(--warn); }
+  .row.vencida, .row.cancelada { border-left-color: var(--bad); opacity: .75; }
+  .r1 { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+  .code { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pill { font-size: .75rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; color: #fff; }
+  .pill.pagada { background: var(--ok); } .pill.pendiente { background: var(--warn); } .pill.vencida, .pill.cancelada { background: var(--bad); }
+  .muted { color: var(--soft); font-size: .88rem; }
+  .people { margin: 0; padding-left: 18px; font-size: .9rem; }
+  .acts { display: flex; flex-wrap: wrap; gap: 6px; }
+  details.tool { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
+  details.tool summary { cursor: pointer; font-weight: 600; }
+  textarea { width: 100%; min-height: 120px; margin: 10px 0; }
+  .match { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+  .login { max-width: 360px; margin: 60px auto; display: grid; gap: 10px; }
+  .login input { font: inherit; padding: 10px; border: 1px solid var(--line); border-radius: 6px; }
+  .login button { font: inherit; font-weight: 600; padding: 10px; border: 0; border-radius: 999px; background: var(--amber); color: #fff; cursor: pointer; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="login" id="login" hidden>
+    <h1>Panel de inscripciones</h1>
+    <p class="muted">Entrá con tu mail. Te llega un link para abrir el panel.</p>
+    <form id="lf" style="display:grid;gap:10px">
+      <input type="email" id="le" required placeholder="tu mail" autocomplete="email">
+      <button>Mandarme el link</button>
+    </form>
+    <p id="lm" class="muted"></p>
+  </section>
+
+  <section id="app" hidden>
+    <header>
+      <h1>Un día en El Paraíso</h1>
+      <span class="who"><span id="me"></span> · <a href="#" id="out">salir</a></span>
+    </header>
+    <div class="stats" id="stats"></div>
+
+    <details class="tool">
+      <summary>Conciliar con el resumen del banco</summary>
+      <p class="muted">Pegá acá el texto del resumen de Santander (copiado o exportado). Busco los códigos PAR-0000 y te propongo qué inscripciones pendientes marcar como pagadas.</p>
+      <textarea id="bank" placeholder="Pegá el resumen acá"></textarea>
+      <button class="act" id="matchBtn">Buscar pagos</button>
+      <div id="matches"></div>
+    </details>
+
+    <div class="bar">
+      <button class="chip" data-f="pendiente" aria-pressed="true">Pendientes</button>
+      <button class="chip" data-f="pagada" aria-pressed="false">Pagadas</button>
+      <button class="chip" data-f="todas" aria-pressed="false">Todas</button>
+      <input type="search" id="q" placeholder="Buscar nombre, CI, código o mail">
+      <button class="act" id="csv">Lista para el seguro (CSV)</button>
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+</div>
+
+<script>
+(async function () {
+  var cfg = window.EL_PARAISO;
+  var sb = supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_KEY);
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; };
+  var pesos = function (n) { return '$ ' + Number(n).toLocaleString('es-UY'); };
+  var fecha = function (t) { return t ? new Date(t).toLocaleString('es-UY', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : ''; };
+  var rows = [], filtro = 'pendiente';
+
+  var s = await sb.auth.getSession();
+  if (!s.data.session) {
+    $('login').hidden = false;
+    $('lf').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var r = await sb.auth.signInWithOtp({ email: $('le').value, options: { emailRedirectTo: location.href } });
+      $('lm').textContent = r.error ? 'No se pudo: ' + r.error.message : 'Listo. Revisá tu mail y abrí el link.';
+    });
+    return;
+  }
+  $('app').hidden = false;
+  $('me').textContent = s.data.session.user.email;
+  $('out').addEventListener('click', async function (e) { e.preventDefault(); await sb.auth.signOut(); location.reload(); });
+
+  function estadoReal(r) { return r.estado === 'pendiente' && new Date(r.vence_at) < new Date() ? 'vencida' : r.estado; }
+
+  async function cargar() {
+    var r = await sb.from('inscripciones')
+      .select('id, codigo, created_at, cantidad, metodo, tramo, total, celular, email, novedades, estado, vence_at, pagada_at, notas, asistentes(nombre, apellido, ci, nacimiento, ingreso_at, orden)')
+      .order('created_at', { ascending: false });
+    if (r.error) { $('list').innerHTML = '<p>No pude leer las inscripciones: ' + esc(r.error.message) + '. ¿Tu mail está en la tabla admins?</p>'; return; }
+    rows = r.data;
+    var venta = (await sb.rpc('estado_venta')).data || {};
+    var personas = function (est) { return rows.filter(function (x) { return estadoReal(x) === est; }).reduce(function (a, x) { return a + x.cantidad; }, 0); };
+    var cobrado = rows.filter(function (x) { return x.estado === 'pagada'; }).reduce(function (a, x) { return a + x.total; }, 0);
+    var adentro = rows.reduce(function (a, x) { return a + x.asistentes.filter(function (p) { return p.ingreso_at; }).length; }, 0);
+    $('stats').innerHTML =
+      '<div class="stat"><b>' + personas('pagada') + '</b><span>personas pagas</span></div>' +
+      '<div class="stat"><b>' + personas('pendiente') + '</b><span>esperando transferencia</span></div>' +
+      '<div class="stat"><b>' + (venta.libres_total ?? '–') + '</b><span>lugares libres</span></div>' +
+      '<div class="stat"><b>' + (venta.nombre || 'Cerrado') + '</b><span>' + (venta.precio_transfer ? pesos(venta.precio_transfer) + ' transferencia' + (venta.libres_tramo != null ? ' · quedan ' + venta.libres_tramo : '') : 'sin tramo vigente') + '</span></div>' +
+      '<div class="stat"><b>' + pesos(cobrado) + '</b><span>cobrado (bruto)</span></div>' +
+      '<div class="stat"><b>' + adentro + '</b><span>ingresaron el día</span></div>';
+    pintar();
+  }
+
+  function pintar() {
+    var q = $('q').value.trim().toLowerCase();
+    var vis = rows.filter(function (r) {
+      var e = estadoReal(r);
+      if (filtro !== 'todas' && e !== filtro) return false;
+      if (!q) return true;
+      var txt = [r.codigo, r.email, r.celular].concat(r.asistentes.map(function (a) { return a.nombre + ' ' + a.apellido + ' ' + a.ci; })).join(' ').toLowerCase();
+      return txt.indexOf(q) >= 0;
+    });
+    $('list').innerHTML = vis.length ? '' : '<p class="muted">Nada para mostrar.</p>';
+    vis.forEach(function (r) {
+      var e = estadoReal(r);
+      var el = document.createElement('div');
+      el.className = 'row ' + e;
+      var gente = r.asistentes.slice().sort(function (a, b) { return a.orden - b.orden; }).map(function (a) {
+        return '<li>' + esc(a.nombre + ' ' + a.apellido) + ' · CI ' + esc(a.ci) + ' · ' + esc(a.nacimiento) + (a.ingreso_at ? ' · <b>entró ' + new Date(a.ingreso_at).toLocaleTimeString('es-UY', { hour: '2-digit', minute: '2-digit' }) + '</b>' : '') + '</li>';
+      }).join('');
+      el.innerHTML =
+        '<div class="r1"><span class="code">' + esc(r.codigo) + '</span><span class="pill ' + e + '">' + e + '</span>' +
+        '<span>' + r.cantidad + (r.cantidad === 1 ? ' entrada' : ' entradas') + ' · ' + pesos(r.total) + ' · ' + esc(r.metodo) + '</span>' +
+        '<span class="muted">' + fecha(r.created_at) + (e === 'pendiente' ? ' · vence ' + fecha(r.vence_at) : '') + (r.pagada_at ? ' · pagó ' + fecha(r.pagada_at) : '') + '</span></div>' +
+        '<ul class="people">' + gente + '</ul>' +
+        '<div class="muted">' + esc(r.email) + ' · ' + esc(r.celular) + (r.novedades ? ' · quiere novedades' : '') + (r.notas ? ' · ' + esc(r.notas) : '') + '</div>' +
+        '<div class="acts"></div>';
+      var acts = el.querySelector('.acts');
+      if (r.metodo === 'transferencia') addBtn(acts, 'Ver comprobante', false, function () { verComprobante(r.codigo); });
+      if (r.estado !== 'pagada' && r.estado !== 'cancelada') addBtn(acts, 'Marcar pagada', true, function (b) { accion('marcar_pagada', r.id, b); });
+      if (r.estado === 'pagada') addBtn(acts, 'Reenviar entradas', false, function (b) { accion('reenviar', r.id, b); });
+      if (r.estado !== 'cancelada' && r.estado !== 'pagada') addBtn(acts, 'Cancelar', false, function (b) { if (window.confirm('¿Cancelar ' + r.codigo + '? Libera los lugares.')) accion('cancelar', r.id, b); });
+      $('list').appendChild(el);
+    });
+  }
+
+  function addBtn(box, label, main, fn) {
+    var b = document.createElement('button');
+    b.className = 'act' + (main ? ' main' : ''); b.textContent = label;
+    b.addEventListener('click', function () { fn(b); });
+    box.appendChild(b);
+  }
+
+  async function accion(a, id, b) {
+    if (b) { b.disabled = true; b.textContent = 'Un momento…'; }
+    var r = await sb.functions.invoke('panel', { body: { accion: a, id: id } });
+    if (r.error) alert('No se pudo: ' + r.error.message);
+    else if (r.data && r.data.mail === false) alert('Quedó pagada, pero el mail no salió. Probá "Reenviar entradas".');
+    await cargar();
+  }
+
+  async function verComprobante(codigo) {
+    var r = await sb.storage.from('comprobantes').createSignedUrl(codigo + '/comprobante', 600);
+    if (r.error) alert('Esta inscripción no subió comprobante.');
+    else window.open(r.data.signedUrl, '_blank');
+  }
+
+  document.querySelectorAll('.chip').forEach(function (c) {
+    c.addEventListener('click', function () {
+      filtro = c.getAttribute('data-f');
+      document.querySelectorAll('.chip').forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      pintar();
+    });
+  });
+  $('q').addEventListener('input', pintar);
+
+  // Conciliación: busca códigos PAR-0000 en el texto pegado y los cruza con las pendientes.
+  $('matchBtn').addEventListener('click', function () {
+    var txt = $('bank').value.toUpperCase();
+    var codes = Array.from(new Set((txt.match(/PAR[\s-]?\d{4}/g) || []).map(function (c) { return 'PAR-' + c.replace(/\D/g, ''); })));
+    var box = $('matches'); box.innerHTML = '';
+    if (!codes.length) { box.innerHTML = '<p class="muted">No encontré códigos PAR-0000 en el texto.</p>'; return; }
+    codes.forEach(function (c) {
+      var r = rows.find(function (x) { return x.codigo === c; });
+      var line = document.createElement('div'); line.className = 'match';
+      if (!r) line.innerHTML = '<b>' + c + '</b><span class="muted">no existe</span>';
+      else if (r.estado === 'pagada') line.innerHTML = '<b>' + c + '</b><span class="muted">ya estaba pagada</span>';
+      else {
+        var montoOk = txt.indexOf(String(r.total)) >= 0 || txt.indexOf(r.total.toLocaleString('es-UY')) >= 0;
+        line.innerHTML = '<b>' + c + '</b><span>' + pesos(r.total) + ' · ' + esc(r.asistentes[0] ? r.asistentes[0].apellido : '') + '</span>' +
+          '<span class="muted">' + (montoOk ? 'el monto aparece en el resumen' : 'revisá el monto: no lo encontré en el texto') + '</span>';
+        addBtn(line, 'Marcar pagada', true, function (b) { accion('marcar_pagada', r.id, b); });
+      }
+      box.appendChild(line);
+    });
+  });
+
+  // Lista para el seguro: una fila por asistente de inscripciones pagas.
+  $('csv').addEventListener('click', function () {
+    var lines = [['Codigo', 'Nombre', 'Apellido', 'CI', 'Nacimiento', 'Email', 'Celular']];
+    rows.filter(function (r) { return r.estado === 'pagada'; }).forEach(function (r) {
+      r.asistentes.forEach(function (a) { lines.push([r.codigo, a.nombre, a.apellido, a.ci, a.nacimiento, r.email, r.celular]); });
+    });
+    var csv = '﻿' + lines.map(function (l) { return l.map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(';'); }).join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'asistentes-el-paraiso.csv';
+    a.click();
+  });
+
+  await cargar();
+})();
+</script>
+</body>
+</html>

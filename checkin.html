@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Check-in · Un día en El Paraíso</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Albert+Sans:wght@400;600&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body { font-family: "Albert Sans", system-ui, sans-serif; background: #f4efe6; color: #17221f;
+    display: grid; place-items: center; text-align: center;
+    padding: max(24px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
+  body.ok { background: #1f7a45; color: #fff; }
+  body.warn { background: #b26a00; color: #fff; }
+  body.bad { background: #9b2c1c; color: #fff; }
+  .big { font-family: "Gloock", Georgia, serif; font-size: clamp(2.4rem, 11vw, 4rem); line-height: 1; margin: 0 0 14px; }
+  .name { font-size: 1.6rem; font-weight: 600; margin: 0 0 6px; }
+  p { margin: 0 0 8px; font-size: 1.05rem; }
+  a, button { color: inherit; }
+  .login { display: grid; gap: 10px; width: min(100%, 340px); }
+  input { font: inherit; padding: 12px; border-radius: 8px; border: 1px solid #bbb; }
+  button { font: inherit; font-weight: 600; padding: 12px 18px; border-radius: 999px; border: 0; background: #a8640f; color: #fff; cursor: pointer; }
+</style>
+</head>
+<body>
+  <main id="out"><p>Revisando la entrada…</p></main>
+<script>
+(async function () {
+  var cfg = window.EL_PARAISO;
+  var sb = supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_KEY);
+  var out = document.getElementById('out');
+  var m = location.hash.match(/t=([a-f0-9]{32})/);
+  function show(cls, html) { document.body.className = cls; out.innerHTML = html; }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+  if (!m) { show('bad', '<p class="big">Código inválido</p><p>Este QR no es una entrada del evento.</p>'); return; }
+
+  var s = await sb.auth.getSession();
+  if (!s.data.session) {
+    show('', '<form class="login" id="f"><p class="name">Check-in de la puerta</p><p>Entrá con tu mail de productor. Te llega un link.</p>' +
+      '<input type="email" id="e" required placeholder="tu mail" autocomplete="email"><button>Mandarme el link</button><p id="m"></p></form>');
+    document.getElementById('f').addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      var r = await sb.auth.signInWithOtp({ email: document.getElementById('e').value, options: { emailRedirectTo: location.href } });
+      document.getElementById('m').textContent = r.error ? 'No se pudo: ' + r.error.message : 'Listo, revisá tu mail y abrí el link en este celular.';
+    });
+    return;
+  }
+
+  var r = await sb.functions.invoke('panel', { body: { accion: 'checkin', token: m[1] } });
+  if (r.error) { show('bad', '<p class="big">Error</p><p>' + esc(r.error.message) + '</p>'); return; }
+  var d = r.data, hora = d.ingreso_at ? new Date(d.ingreso_at).toLocaleTimeString('es-UY', { hour: '2-digit', minute: '2-digit' }) : '';
+  if (d.resultado === 'ok') show('ok', '<p class="big">Adelante</p><p class="name">' + esc(d.nombre) + '</p><p>CI ' + esc(d.ci) + ' · ' + esc(d.codigo) + '</p>');
+  else if (d.resultado === 'ya_ingreso') show('warn', '<p class="big">Ya entró</p><p class="name">' + esc(d.nombre) + '</p><p>Ingresó a las ' + hora + ' · CI ' + esc(d.ci) + '</p>');
+  else if (d.resultado === 'no_pagada') show('bad', '<p class="big">Sin pago</p><p class="name">' + esc(d.nombre) + '</p><p>La inscripción ' + esc(d.codigo) + ' no figura como pagada.</p>');
+  else if (d.resultado === 'no_existe') show('bad', '<p class="big">No existe</p><p>Este QR no corresponde a ninguna entrada.</p>');
+  else if (r.data && r.data.error === 'permiso') show('bad', '<p class="big">Sin permiso</p><p>Este mail no está habilitado para hacer check-in.</p>');
+  else show('bad', '<p class="big">Error</p><p>' + esc(JSON.stringify(d)) + '</p>');
+})();
+</script>
+</body>
+</html>
