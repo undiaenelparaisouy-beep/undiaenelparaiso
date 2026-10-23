@@ -566,6 +566,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
       </fieldset>
 
       <div class="consents">
+        <label class="consent"><input type="checkbox" id="r-salud" required> <span>Declaro que todas las personas de esta inscripción están en condiciones de salud para hacer actividad física suave (pilates, yoga, tai chi, baño de gong) y que participan bajo su propia responsabilidad. Si alguien tiene una condición médica o está embarazada, lo consultó antes con su médico.</span></label>
         <label class="consent"><input type="checkbox" id="r-ok" required> <span>Acepto que estos datos se usen solo para la inscripción y el seguro de la jornada. <span class="tbd">texto legal a revisar (Ley 18.331)</span></span></label>
         <label class="consent"><input type="checkbox" id="r-news" name="novedades"> <span>Quiero que Juan Diego Sagasti me avise de sus próximas experiencias. Me puedo dar de baja cuando quiera. <span class="opt-l">(opcional)</span></span></label>
       </div>
@@ -734,7 +735,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
       if ((empty || wrong) && !bad) bad = inp;
     });
     if (bad) {
-      err.textContent = bad.type === 'checkbox' ? 'Falta aceptar el uso de los datos.' : 'Revisá los campos marcados en rojo.';
+      err.textContent = bad.type === 'checkbox' ? (bad.id === 'r-salud' ? 'Falta aceptar la declaración de salud.' : 'Falta aceptar el uso de los datos.') : 'Revisá los campos marcados en rojo.';
       err.hidden = false; bad.focus(); return;
     }
     if (!CFG) { err.textContent = 'Esta vista previa no puede enviar inscripciones.'; err.hidden = false; return; }
@@ -759,6 +760,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
           cantidad: qty, asistentes: asistentes, metodo: metodo(),
           celular: document.getElementById('r-cel').value, email: document.getElementById('r-mail').value.trim(),
           consentimiento: document.getElementById('r-ok').checked,
+          deslinde: document.getElementById('r-salud').checked,
           novedades: !!(document.getElementById('r-news') && document.getElementById('r-news').checked),
           sitio: document.getElementById('r-sitio').value
         })
