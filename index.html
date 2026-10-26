@@ -215,7 +215,6 @@ footer { padding-bottom: 90px; }
 }
 .mini { display: grid; gap: 6px; }
 .mini .stamp time { font-size: clamp(3.6rem, 12vw, 6.5rem); }
-.mini .portrait { max-width: 62ch; margin-top: 12px; }
 
 /* Mesa */
 .table { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 28px; }
@@ -343,7 +342,13 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     <div class="wrap mini">
       
       <p class="body soft">Te recibimos en la entrada, con la neblina de la mañana todavía sobre la laguna. Cuatro prácticas, comida de estación, un café concert y un fogón con violín y contrabajo en vivo: el día entero está pensado para que no tengas que mirar el reloj. <span class="tbd">¿infusión de bienvenida?</span></p>
-      <img class="portrait wide" src="img/g0136.jpg" alt="Portón de entrada con el cartel El Paraíso" loading="lazy">
+      <div class="walk-wrap">
+        <div class="walk" tabindex="0" aria-label="Fotos de la llegada, deslizá para ver más">
+          <figure><img src="img/g0136.jpg" alt="Portón de entrada con el cartel El Paraíso" loading="lazy"><figcaption class="soft">La entrada</figcaption></figure>
+          <figure><img src="img/g0138.jpg" alt="Camino de entrada entre palmeras" loading="lazy"><figcaption class="soft">El camino de palmeras</figcaption></figure>
+          <figure><img src="img/g0145.jpg" alt="Rostro esculpido en una pirca" loading="lazy"><figcaption class="soft">La pirca</figcaption></figure>
+        </div>
+      </div>
     </div>
   </details>
 
@@ -427,12 +432,10 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
       <div class="stamp"><p class="lead soft">Media hora libre para recorrer El Paraíso, la chacra de Carlos Perciavalle <span class="tbd">requiere aprobación de Carlos</span>, hasta la orilla de la laguna.</p></div>
       <div class="walk-wrap">
         <div class="walk" tabindex="0" aria-label="Fotos de la chacra, deslizá para ver más">
-          <figure><img src="img/g0138.jpg" alt="Camino entre palmeras" loading="lazy"><figcaption class="soft">El camino de palmeras</figcaption></figure>
           <figure><img src="img/g0163.jpg" alt="Sol entre los árboles y la laguna" loading="lazy"><figcaption class="soft">La Laguna del Sauce</figcaption></figure>
           <figure><img src="img/g0170.jpg" alt="Cipreses frente a la laguna" loading="lazy"><figcaption class="soft">Los cipreses</figcaption></figure>
           <figure><img src="img/g0152.jpg" alt="Oveja con corderos" loading="lazy"><figcaption class="soft">Las vecinas</figcaption></figure>
           <figure><img src="img/g0167.jpg" alt="Estanque de piedra" loading="lazy"><figcaption class="soft">El estanque</figcaption></figure>
-          <figure><img src="img/g0145.jpg" alt="Rostro esculpido en una pirca" loading="lazy"><figcaption class="soft">La pirca</figcaption></figure>
         </div>
       </div>
     </div>
