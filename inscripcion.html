@@ -287,7 +287,7 @@ body { background: #120d0f; }
     document.querySelector('#now-price .label').textContent = v.nombre + ' · ahora';
     document.querySelector('#now-price .list').textContent = fmt(PRICE_C);
     document.querySelector('#now-price .amount').textContent = fmt(PRICE_T);
-    if (v.tramo === 'early' && v.libres_tramo != null) document.querySelector('#now-price .when').textContent = 'Precio de lanzamiento por transferencia; con tarjeta (hasta 12 cuotas) se paga el precio de lista. Primeras 20 entradas o hasta el 5 de noviembre · quedan ' + v.libres_tramo + '.';
+    if (v.tramo === 'early' && v.libres_tramo != null) document.querySelector('#now-price .when').textContent = 'Precio de lanzamiento por transferencia; con tarjeta (hasta 12 cuotas) se paga el precio de lista. ' + (v.libres_tramo === 1 ? 'Queda 1 entrada' : 'Quedan ' + v.libres_tramo + ' entradas') + ' a este precio · hasta el 5 de noviembre' + '.';
     render();
   });
   people.addEventListener('blur', function (e) {

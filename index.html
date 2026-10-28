@@ -502,7 +502,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     <h2>Inscribite</h2>
     <p class="soft" style="margin-top:12px; max-width:56ch">Precio de lanzamiento, primera edición. Sube por etapas: cuanto antes reservás, menos pagás. Pagando por transferencia tenés descuento; con tarjeta (hasta 12 cuotas por Mercado Pago) se paga el precio de lista. Incluye las cuatro prácticas, almuerzo, merienda, bebidas, «Carlos Perciavalle: anécdotas del Paraíso» y fogón con música en vivo. <span class="tbd">confirmar qué incluye</span></p>
     <div class="prices">
-      <div class="price now"><span class="label">Early bird · ahora</span><span class="pay"><s class="list">$ 3.150</s><span class="amount">$ 2.800</span><small>por transferencia</small></span><span class="when">Primeras 20 entradas o hasta el 5 de noviembre · quedan 20</span></div>
+      <div class="price now"><span class="label">Early bird · ahora</span><span class="pay"><s class="list">$ 3.150</s><span class="amount">$ 2.800</span><small>por transferencia</small></span><span class="when">Quedan 20 entradas a este precio · hasta el 5 de noviembre</span></div>
       <div class="price"><span class="label">Segunda etapa</span><span class="pay"><s class="list">$ 3.400</s><span class="amount">$ 3.000</span><small>por transferencia</small></span><span class="when">Del 6 al 13 de noviembre <span class="tbd">fechas a confirmar</span></span></div>
       <div class="price"><span class="label">Última semana</span><span class="pay"><s class="list">$ 3.600</s><span class="amount">$ 3.200</span><small>por transferencia</small></span><span class="when">Del 14 de noviembre en adelante <span class="tbd">fechas a confirmar</span></span></div>
     </div>
@@ -573,7 +573,7 @@ if (/[?&]pago=/.test(location.search)) location.replace('inscripcion' + location
     var hl = document.querySelector('.hero .price-tag .list'); if (hl) hl.textContent = fmt(v.precio_tarjeta);
     var hs = document.querySelector('.hero .price-tag small'); if (hs) hs.textContent = v.nombre + ' · por transferencia';
     var now = document.querySelector('.price.now .when');
-    if (now && v.tramo === 'early' && v.libres_tramo != null) now.textContent = 'Primeras 20 entradas o hasta el 5 de noviembre · quedan ' + v.libres_tramo;
+    if (now && v.tramo === 'early' && v.libres_tramo != null) now.textContent = (v.libres_tramo === 1 ? 'Queda 1 entrada' : 'Quedan ' + v.libres_tramo + ' entradas') + ' a este precio · hasta el 5 de noviembre';
   });
   links.forEach(function (a) {
     a.addEventListener('click', function (e) { e.preventDefault(); openAndGo(a.getAttribute('data-t').replace('-sunset', '')); });
