@@ -139,6 +139,7 @@ body { background: #120d0f; }
 .now-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-top: 28px; padding-block: 16px; border-top: 1px solid rgba(247,236,224,.18); border-bottom: 1px solid rgba(247,236,224,.18); }
 .now-price .label { font-weight: 600; color: var(--ember); }
 .now-price .amount { font-family: var(--f-hour); font-size: clamp(2.4rem, 7vw, 3.4rem); line-height: 1; color: var(--ember); text-shadow: 0 0 24px rgba(255,138,61,.45); font-variant-numeric: lining-nums; }
+.now-price .list { font-family: var(--f-hour); font-size: clamp(1.4rem, 4vw, 1.9rem); line-height: 1; color: var(--soft-night); }
 .now-price .when { flex-basis: 100%; color: var(--soft-night); font-size: .95rem; }
 .reg { margin-top: 36px; }
 .draftbar, .tbd { display: none !important; }
@@ -153,7 +154,7 @@ body { background: #120d0f; }
     <p class="eyebrow">Sábado 21 de noviembre · 10:00 a 20:00 · Punta Ballena</p>
     <h2>Inscribite</h2>
     <p class="soft" style="margin-top:12px; max-width:56ch">Un día en El Paraíso, en la chacra frente a la Laguna del Sauce. Incluye las cuatro prácticas, almuerzo, merienda, bebidas, café concert y fogón con música en vivo. <span class="tbd">confirmar qué incluye</span></p>
-    <div class="now-price" id="now-price"><span class="label">Early bird · ahora</span><span class="amount">$ 2.800</span><span class="when">Precio de lanzamiento por transferencia. Sube por etapas: cuanto antes reservás, menos pagás.</span></div>
+    <div class="now-price" id="now-price"><span class="label">Early bird · ahora</span><s class="list">$ 3.150</s><span class="amount">$ 2.800</span><span class="when">Precio de lanzamiento por transferencia; con tarjeta (hasta 12 cuotas) se paga el precio de lista. Sube por etapas: cuanto antes reservás, menos pagás.</span></div>
     <div id="form-box">
     <form class="reg" id="inscripcion" novalidate>
       <fieldset class="step">
@@ -284,8 +285,9 @@ body { background: #120d0f; }
     }
     PRICE_T = v.precio_transfer; PRICE_C = v.precio_tarjeta; TRAMO = v.nombre.toLowerCase();
     document.querySelector('#now-price .label').textContent = v.nombre + ' · ahora';
+    document.querySelector('#now-price .list').textContent = fmt(PRICE_C);
     document.querySelector('#now-price .amount').textContent = fmt(PRICE_T);
-    if (v.tramo === 'early' && v.libres_tramo != null) document.querySelector('#now-price .when').textContent = 'Precio de lanzamiento por transferencia. Primeras 20 entradas o hasta el 5 de noviembre · quedan ' + v.libres_tramo + '.';
+    if (v.tramo === 'early' && v.libres_tramo != null) document.querySelector('#now-price .when').textContent = 'Precio de lanzamiento por transferencia; con tarjeta (hasta 12 cuotas) se paga el precio de lista. Primeras 20 entradas o hasta el 5 de noviembre · quedan ' + v.libres_tramo + '.';
     render();
   });
   people.addEventListener('blur', function (e) {
