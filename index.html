@@ -83,12 +83,6 @@ a { color: inherit; }
 @media (min-width: 760px) { .menu ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* ===== Inscripción e info, compactas ===== */
-.formbox { margin-top: 36px; }
-.formbox > summary { list-style: none; cursor: pointer; border: 0; font: inherit; font-weight: 600; background: var(--ember); color: #1a0d05; }
-.formbox > summary::-webkit-details-marker { display: none; }
-.formbox .opened, .formbox[open] .closed { display: none; }
-.formbox[open] .opened { display: inline; }
-.formbox[open] > summary { background: transparent; color: var(--ink-night); box-shadow: 0 0 0 1.5px rgba(247,236,224,.5) inset; }
 .info { margin-top: 40px; border-top: 1px solid rgba(247,236,224,.18); border-bottom: 1px solid rgba(247,236,224,.18); }
 .info > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding-block: 18px; font-family: var(--f-hero); font-size: 1.3rem; }
 .info > summary::-webkit-details-marker { display: none; }
@@ -262,55 +256,7 @@ footer { padding-bottom: 90px; }
 .practical dd { color: var(--soft-night); }
 .night .btn { background: var(--ember); color: #1a0d05; }
 .cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-.reg { display: grid; gap: 28px; margin-top: 44px; max-width: 720px; }
-.step { border: 0; padding: 0; margin: 0; display: grid; gap: 14px; min-width: 0; }
-.step legend { font-family: var(--f-hero); font-size: 1.45rem; padding: 0; margin-bottom: 4px; display: flex; align-items: center; gap: 12px; }
-.step .n { width: 30px; height: 30px; border-radius: 50%; display: inline-grid; place-items: center; font-family: var(--f-body); font-size: .9rem; font-weight: 600; background: var(--ember); color: #1a0d05; flex: none; }
-.small { font-size: .92rem; }
-.qty { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-.qbtn { width: 44px; height: 44px; border-radius: 50%; font: inherit; font-size: 1.4rem; line-height: 1; color: var(--ink-night); background: transparent; border: 1.5px solid rgba(247,236,224,.5); cursor: pointer; }
-.qbtn:disabled { opacity: .3; cursor: default; }
-.qbtn:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
-.qty output { font-family: var(--f-hour); font-size: 2.6rem; min-width: 1.6ch; text-align: center; line-height: 1; }
-.total { margin-left: auto; font-size: 1rem; }
-.total b { font-family: var(--f-hour); font-size: 2rem; font-weight: 400; color: var(--ember); }
-.total small { color: var(--soft-night); }
-.person { display: grid; gap: 12px; padding: 18px; border: 1px solid rgba(247,236,224,.18); border-radius: 4px; margin-bottom: 12px; }
-.person h4 { font-family: var(--f-hero); font-weight: 400; font-size: 1.1rem; margin: 0; }
-.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px 16px; }
-.reg label { display: grid; gap: 6px; font-size: .9rem; color: var(--soft-night); min-width: 0; }
-.reg input[type=text], .reg input[type=tel], .reg input[type=email], .reg input[type=date] {
-  font: inherit; font-size: 1rem; color: var(--ink-night); background: rgba(247,236,224,.06);
-  border: 1px solid rgba(247,236,224,.28); border-radius: 4px; padding: 11px 12px; width: 100%; min-width: 0; color-scheme: dark;
-}
-.reg input:focus-visible { outline: 2px solid var(--ember); outline-offset: 1px; border-color: transparent; }
-.reg input[aria-invalid=true] { border-color: #ff6b5a; }
-.hintline { font-size: .8rem; color: #ffb3a8; min-height: 1em; }
-.opt-l { opacity: .75; }
-.paygrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
-.reg .payopt { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; padding: 16px; border: 1px solid rgba(247,236,224,.25); border-radius: 4px; cursor: pointer; color: var(--ink-night); }
-.reg .payopt:has(input:checked) { border-color: var(--ember); box-shadow: 0 0 30px rgba(255,138,61,.12) inset; }
-.payopt input, .consent input { accent-color: #ff8a3d; width: 18px; height: 18px; margin-top: 3px; }
-.payopt b { display: block; font-weight: 600; font-size: 1rem; }
-.payopt small { color: var(--soft-night); font-size: .88rem; }
-.reg .consent { grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; }
-.reg .consents { display: grid; gap: 14px; }
-.err { color: #ffb3a8; font-weight: 600; }
-.reg .btn { justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 600; background: var(--ember); color: #1a0d05; }
-.done { margin-top: 40px; padding: 24px; border: 1px solid var(--ember); border-radius: 4px; display: grid; gap: 16px; max-width: 720px; box-shadow: 0 0 40px rgba(255,138,61,.12) inset; }
-.done:focus { outline: none; }
 .opt-k { font-family: var(--f-hero); font-size: 1.45rem; line-height: 1.2; }
-.opt-k b { font-weight: 400; color: var(--ember); }
-.acct { display: grid; gap: 10px; margin: 0; }
-.acct div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 10px; align-items: baseline; }
-.acct dt { color: var(--soft-night); font-size: .9rem; }
-.acct dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.copy { font: inherit; font-size: .8rem; font-weight: 600; color: var(--ink-night); background: transparent; border: 1px solid rgba(247,236,224,.4); border-radius: 999px; padding: 2px 10px; margin-left: 6px; cursor: pointer; }
-.copy:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
-.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-.up { display: grid; gap: 8px; }
-.up label { font-size: .95rem; }
-.up input[type=file] { font: inherit; font-size: .9rem; color: var(--ink-night); max-width: 100%; }
 .confirm { margin-top: 20px; font-size: .95rem; }
 footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; padding-block: 24px 36px; }
 .draftbar, .tbd { display: none !important; }
@@ -328,13 +274,13 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     <p class="bajada">Un sábado entero para moverte, respirar, escuchar y celebrar, en una chacra frente a la Laguna del Sauce.</p>
     <p class="facts"><span>10:00 a 20:00</span><span>Ruta 12 km 8,5</span><span>Cupo: 50 personas</span></p>
     <div class="hero-cta">
-      <a class="btn" href="#reserva" data-open-form>Inscribirme</a>
+      <a class="btn" href="inscripcion">Inscribirme</a>
       <div class="price-tag"><span class="amount">$ 2.800</span><small>Early bird · precio de lanzamiento</small></div>
     </div>
   </div>
 </header>
 
-<nav class="menu" aria-label="Menú"><div class="wrap"><ul><li><a href="#dia" data-go="dia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg><span><b>El programa</b><small>Hora por hora</small></span></a></li><li><a href="#reserva" data-go="reserva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 8.5v10" stroke-dasharray="1.5 2"/></svg><span><b>Inscribite</b><small>Precios y formulario</small></span></a></li><li><a href="#h1230" data-go="h1230"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M9 9c0-1.5 1-1.5 1-3M13 9c0-1.5 1-1.5 1-3"/></svg><span><b>La comida</b><small>Almuerzo y merienda</small></span></a></li><li><a href="#h1500" data-go="h1500"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l6-8 4 5 3-3 5 6z"/><circle cx="16.5" cy="7.5" r="2"/></svg><span><b>El lugar</b><small>Fotos de la chacra</small></span></a></li><li><a href="#info" data-go="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><b>Cómo llegar</b><small>Qué traer y preguntas</small></span></a></li><li><a class="wa" href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span><b>Consultas</b><small>Por WhatsApp</small></span></a></li></ul></div></nav>
+<nav class="menu" aria-label="Menú"><div class="wrap"><ul><li><a href="#dia" data-go="dia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg><span><b>El programa</b><small>Hora por hora</small></span></a></li><li><a href="#reserva" data-go="reserva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 8.5v10" stroke-dasharray="1.5 2"/></svg><span><b>Inscribite</b><small>Precios y entradas</small></span></a></li><li><a href="#h1230" data-go="h1230"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M9 9c0-1.5 1-1.5 1-3M13 9c0-1.5 1-1.5 1-3"/></svg><span><b>La comida</b><small>Almuerzo y merienda</small></span></a></li><li><a href="#h1500" data-go="h1500"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l6-8 4 5 3-3 5 6z"/><circle cx="16.5" cy="7.5" r="2"/></svg><span><b>El lugar</b><small>Fotos de la chacra</small></span></a></li><li><a href="#info" data-go="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><b>Cómo llegar</b><small>Qué traer y preguntas</small></span></a></li><li><a class="wa" href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span><b>Consultas</b><small>Por WhatsApp</small></span></a></li></ul></div></nav>
 
 <main id="dia">
   <div class="day-head"><div class="wrap"><p class="kick">El sábado, hora por hora</p><p class="hint">Tocá cada momento para verlo completo.</p></div></div>
@@ -538,75 +484,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
       <div class="price"><span class="label">Segunda etapa</span><span class="amount">$ 3.000</span><span class="when">Del 6 al 13 de noviembre <span class="tbd">fechas a confirmar</span></span></div>
       <div class="price"><span class="label">Última semana</span><span class="amount">$ 3.200</span><span class="when">Del 14 de noviembre en adelante <span class="tbd">fechas a confirmar</span></span></div>
     </div>
-    <details class="formbox" id="form-box">
-      <summary class="btn"><span class="closed">Quiero inscribirme</span><span class="opened">Cerrar formulario</span></summary>
-    <form class="reg" id="inscripcion" novalidate>
-      <fieldset class="step">
-        <legend><span class="n">1</span> ¿Cuántas entradas?</legend>
-        <div class="qty">
-          <button type="button" class="qbtn" id="q-minus" aria-label="Una entrada menos">−</button>
-          <output id="q-val" aria-live="polite">1</output>
-          <button type="button" class="qbtn" id="q-plus" aria-label="Una entrada más">+</button>
-          <p class="total">Total <b id="q-total">$ 2.800</b> <small>· $ 2.800 c/u, early bird</small></p>
-        </div>
-      </fieldset>
-
-      <fieldset class="step">
-        <legend><span class="n">2</span> Datos de cada asistente</legend>
-        <p class="soft small">Los pedimos para el seguro del evento.</p>
-        <div id="people"></div>
-        <div class="grid2">
-          <label>Celular de contacto<input id="r-cel" name="celular" type="tel" inputmode="tel" autocomplete="tel" required placeholder="09X XXX XXX"></label>
-          <label><span>Email <span class="opt-l">(para la confirmación)</span></span><input id="r-mail" name="email" type="email" autocomplete="email" required></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="step">
-        <legend><span class="n">3</span> Forma de pago</legend>
-        <div class="paygrid">
-          <label class="payopt"><input type="radio" name="pago" value="transferencia" id="p-tr" checked><span><b>Transferencia bancaria</b><small>Sin recargo. Te mostramos los datos al confirmar.</small></span></label>
-          <label class="payopt"><input type="radio" name="pago" value="tarjeta" id="p-mp"><span><b>Tarjeta de crédito o débito</b><small>Pagás en el checkout de Mercado Pago.</small></span></label>
-        </div>
-      </fieldset>
-
-      <div class="consents">
-        <label class="consent"><input type="checkbox" id="r-salud" required> <span>Declaro que todas las personas de esta inscripción están en condiciones de salud para hacer actividad física suave (pilates, yoga, tai chi, baño de gong) y que participan bajo su propia responsabilidad. Si alguien tiene una condición médica o está embarazada, lo consultó antes con su médico.</span></label>
-        <label class="consent"><input type="checkbox" id="r-ok" required> <span>Acepto que estos datos se usen solo para la inscripción y el seguro de la jornada. <span class="tbd">texto legal a revisar (Ley 18.331)</span></span></label>
-        <label class="consent"><input type="checkbox" id="r-news" name="novedades"> <span>Quiero que Juan Diego Sagasti me avise de sus próximas experiencias. Me puedo dar de baja cuando quiera. <span class="opt-l">(opcional)</span></span></label>
-      </div>
-      <p class="err" id="r-err" role="alert" hidden></p>
-      <input type="text" id="r-sitio" name="sitio" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button type="submit" class="btn" id="r-go">Confirmar inscripción</button>
-    </form>
-
-    <div class="done" id="r-done" hidden tabindex="-1">
-      <div id="done-tr">
-        <p class="opt-k">Último paso: transferí <b id="d-total">$ 2.800</b></p>
-        <p class="soft small">Tu código es <b id="d-code"></b>. Te guardamos el lugar hasta el <span id="d-vence"></span>. También te lo mandamos por mail (si no lo ves, revisá la carpeta de spam).</p>
-        <dl class="acct">
-          <div><dt>Titular</dt><dd>Juan Diego Sagasti</dd></div>
-          <div><dt>Moneda</dt><dd>Pesos uruguayos (UYU)</dd></div>
-          <div><dt>Desde Santander</dt><dd><span id="acc-1">1646915</span> · sucursal 37 <button type="button" class="copy" data-copy="1646915" data-sel="acc-1">Copiar</button></dd></div>
-          <div><dt>Desde otros bancos</dt><dd><span id="acc-2">0037000001646915</span> <button type="button" class="copy" data-copy="0037000001646915" data-sel="acc-2">Copiar</button></dd></div>
-          <div><dt>Concepto</dt><dd><b id="d-code2"></b> <span class="soft small">(poné este código)</span></dd></div>
-        </dl>
-        <div class="up">
-          <label for="r-file">Subí la foto del comprobante <span class="opt-l">(opcional, nos ayuda a confirmarte más rápido)</span></label>
-          <input type="file" id="r-file" accept="image/*,application/pdf">
-          <p class="soft small" id="r-upmsg" aria-live="polite"></p>
-        </div>
-        <p class="soft small">Cuando recibimos la transferencia te mandamos por mail tu entrada con un código QR.</p>
-      </div>
-      <div id="done-ret" hidden>
-        <p class="opt-k" id="ret-t"></p>
-        <p class="soft small" id="ret-d"></p>
-      </div>
-      <div id="done-mp" hidden>
-        <p class="opt-k">Te llevamos a Mercado Pago…</p>
-        <p class="soft small">Si no se abre solo, <a id="d-mp" href="#">tocá acá para pagar</a>.</p>
-      </div>
-    </div>
-    </details>
+    <div class="cta-row" id="cta-res"><a class="btn" href="inscripcion">Quiero inscribirme</a></div>
 
     <p class="soft confirm">¿Dudas antes de inscribirte? <a href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener">Escribinos por WhatsApp al 092 594 179</a>.</p>
     <details class="info" id="info">
@@ -628,6 +506,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="config.js"></script>
 <script>
+if (/[?&]pago=/.test(location.search)) location.replace('inscripcion' + location.search);
 (function () {
   var rail = document.getElementById('rail');
   var tip = document.getElementById('rail-tip');
@@ -653,185 +532,23 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     a.addEventListener('click', function (e) {
       e.preventDefault();
       var t = a.getAttribute('data-go');
-      if (t === 'reserva') document.getElementById('form-box').open = true;
       openAndGo(t);
     });
   });
-  var heroCta = document.querySelector('[data-open-form]');
-  if (heroCta) heroCta.addEventListener('click', function (e) { e.preventDefault(); document.getElementById('form-box').open = true; openAndGo('reserva'); });
+  // Precio vigente y lugares que quedan; si se cerró la venta, el botón deja de llevar a la inscripción.
   var CFG = window.EL_PARAISO, sb = (CFG && window.supabase) ? window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_KEY) : null;
-  var PRICE_T = 2800, PRICE_C = 3150, TRAMO = 'early bird', MAX = 6, qty = 1, SENDING = false;
-  var PRICE = PRICE_T;
-  function metodo() { return document.getElementById('p-mp').checked ? 'tarjeta' : 'transferencia'; }
-  var people = document.getElementById('people');
   var fmt = function (n) { return '$ ' + n.toLocaleString('es-UY'); };
-  function ciOk(v) {
-    var d = String(v).replace(/\D/g, '');
-    if (d.length < 7 || d.length > 8) return false;
-    d = d.padStart(8, '0');
-    var w = [2, 9, 8, 7, 6, 3, 4], sum = 0;
-    for (var i = 0; i < 7; i++) sum += Number(d[i]) * w[i];
-    return (10 - (sum % 10)) % 10 === Number(d[7]);
-  }
-  function card(i) {
-    var el = document.createElement('div');
-    el.className = 'person';
-    el.innerHTML = '<h4>' + (i === 0 ? 'Asistente 1 · quien reserva' : 'Asistente ' + (i + 1)) + '</h4>' +
-      '<div class="grid2">' +
-      '<label>Nombre<input type="text" id="p' + i + '-nom" autocomplete="' + (i === 0 ? 'given-name' : 'off') + '" required></label>' +
-      '<label>Apellido<input type="text" id="p' + i + '-ape" autocomplete="' + (i === 0 ? 'family-name' : 'off') + '" required></label>' +
-      '<label>Cédula de identidad<input type="text" id="p' + i + '-ci" inputmode="numeric" placeholder="1.234.567-2" required><span class="hintline" id="p' + i + '-cih"></span></label>' +
-      '<label>Fecha de nacimiento<input type="date" id="p' + i + '-nac" required max="2026-11-21"></label>' +
-      '</div>';
-    return el;
-  }
-  function render() {
-    while (people.children.length < qty) people.appendChild(card(people.children.length));
-    while (people.children.length > qty) people.removeChild(people.lastChild);
-    document.getElementById('q-val').textContent = qty;
-    PRICE = metodo() === 'tarjeta' ? PRICE_C : PRICE_T;
-    document.getElementById('q-total').textContent = fmt(PRICE * qty);
-    document.querySelector('.total small').textContent = '· ' + fmt(PRICE) + ' c/u, ' + TRAMO + (metodo() === 'tarjeta' ? ', con tarjeta' : '');
-    document.getElementById('q-minus').disabled = qty <= 1;
-    document.getElementById('q-plus').disabled = qty >= MAX;
-  }
-  document.getElementById('q-minus').addEventListener('click', function () { if (qty > 1) { qty--; render(); } });
-  document.getElementById('q-plus').addEventListener('click', function () { if (qty < MAX) { qty++; render(); } });
-  render();
-  document.getElementById('p-tr').addEventListener('change', render);
-  document.getElementById('p-mp').addEventListener('change', render);
   if (sb) sb.rpc('estado_venta').then(function (r) {
     var v = r.data;
     if (!v) return;
     if (!v.tramo) {
-      document.getElementById('form-box').innerHTML = '<p class="opt-k">Las inscripciones están cerradas</p><p class="soft">' + (v.libres_total === 0 ? 'Se completó el cupo.' : 'Escribinos por WhatsApp para consultar.') + '</p>';
+      document.getElementById('cta-res').innerHTML = '<p class="opt-k">Las inscripciones están cerradas</p><p class="soft">' + (v.libres_total === 0 ? 'Se completó el cupo.' : 'Escribinos por WhatsApp para consultar.') + '</p>';
       return;
     }
-    PRICE_T = v.precio_transfer; PRICE_C = v.precio_tarjeta; TRAMO = v.nombre.toLowerCase();
-    var hp = document.querySelector('.hero .price-tag .amount'); if (hp) hp.textContent = fmt(PRICE_T);
+    var hp = document.querySelector('.hero .price-tag .amount'); if (hp) hp.textContent = fmt(v.precio_transfer);
     var hs = document.querySelector('.hero .price-tag small'); if (hs) hs.textContent = v.nombre + ' · precio de lanzamiento';
     var now = document.querySelector('.price.now .when');
     if (now && v.tramo === 'early' && v.libres_tramo != null) now.textContent = 'Primeras 20 entradas o hasta el 5 de noviembre · quedan ' + v.libres_tramo;
-    render();
-  });
-  people.addEventListener('blur', function (e) {
-    var t = e.target;
-    if (!/-ci$/.test(t.id) || !t.value) return;
-    var ok = ciOk(t.value);
-    t.setAttribute('aria-invalid', ok ? 'false' : 'true');
-    document.getElementById(t.id + 'h').textContent = ok ? '' : 'Revisá la cédula: el dígito verificador no coincide.';
-  }, true);
-  function showDone(which) {
-    ['done-tr', 'done-mp', 'done-ret'].forEach(function (id) { document.getElementById(id).hidden = id !== which; });
-    var done = document.getElementById('r-done');
-    done.hidden = false; done.focus();
-    done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-  }
-  var lastUpload = null;
-  document.getElementById('inscripcion').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    if (SENDING) return;
-    var err = document.getElementById('r-err'), bad = null, form = this;
-    form.querySelectorAll('input[required]').forEach(function (inp) {
-      var empty = inp.type === 'checkbox' ? !inp.checked : !inp.value.trim();
-      var wrong = !empty && /-ci$/.test(inp.id) && !ciOk(inp.value);
-      if (inp.type !== 'checkbox') inp.setAttribute('aria-invalid', (empty || wrong) ? 'true' : 'false');
-      if ((empty || wrong) && !bad) bad = inp;
-    });
-    if (bad) {
-      err.textContent = bad.type === 'checkbox' ? (bad.id === 'r-salud' ? 'Falta aceptar la declaración de salud.' : 'Falta aceptar el uso de los datos.') : 'Revisá los campos marcados en rojo.';
-      err.hidden = false; bad.focus(); return;
-    }
-    if (!CFG) { err.textContent = 'Esta vista previa no puede enviar inscripciones.'; err.hidden = false; return; }
-    err.hidden = true;
-    var asistentes = [];
-    for (var i = 0; i < qty; i++) {
-      asistentes.push({
-        nombre: document.getElementById('p' + i + '-nom').value.trim(),
-        apellido: document.getElementById('p' + i + '-ape').value.trim(),
-        ci: document.getElementById('p' + i + '-ci').value,
-        nacimiento: document.getElementById('p' + i + '-nac').value
-      });
-    }
-    var go = document.getElementById('r-go');
-    SENDING = true; go.disabled = true; go.textContent = 'Enviando…';
-    var res, data;
-    try {
-      res = await fetch(CFG.SUPABASE_URL + '/functions/v1/inscribir', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', apikey: CFG.SUPABASE_KEY },
-        body: JSON.stringify({
-          cantidad: qty, asistentes: asistentes, metodo: metodo(),
-          celular: document.getElementById('r-cel').value, email: document.getElementById('r-mail').value.trim(),
-          consentimiento: document.getElementById('r-ok').checked,
-          deslinde: document.getElementById('r-salud').checked,
-          novedades: !!(document.getElementById('r-news') && document.getElementById('r-news').checked),
-          sitio: document.getElementById('r-sitio').value
-        })
-      });
-      data = await res.json();
-    } catch (x) { data = { error: 'red' }; }
-    SENDING = false; go.disabled = false; go.textContent = 'Confirmar inscripción';
-
-    if (!res || !res.ok) {
-      var msg = {
-        sin_lugar: 'No quedan lugares suficientes en este tramo. Probá con menos entradas o escribinos por WhatsApp.',
-        datos: 'Revisá los datos: algo no está bien' + ((data.campos || []).indexOf('ci_repetida') >= 0 ? ' (hay una cédula repetida).' : '.'),
-        mercadopago: 'No pudimos abrir Mercado Pago. Probá de nuevo o elegí transferencia.',
-        red: 'No hay conexión. Revisá internet y probá de nuevo.'
-      }[data && data.error] || 'Algo falló de nuestro lado. Probá de nuevo en un rato o escribinos por WhatsApp.';
-      (data.campos || []).forEach(function (c) {
-        var m = c.match(/^(ci|nombre|nacimiento)_(\d)$/);
-        if (m) { var el = document.getElementById('p' + m[2] + '-' + { ci: 'ci', nombre: 'nom', nacimiento: 'nac' }[m[1]]); if (el) el.setAttribute('aria-invalid', 'true'); }
-      });
-      err.textContent = msg; err.hidden = false; return;
-    }
-
-    if (data.checkout_url) {
-      document.getElementById('d-mp').href = data.checkout_url;
-      showDone('done-mp');
-      location.href = data.checkout_url;
-      return;
-    }
-    document.getElementById('d-total').textContent = fmt(data.total);
-    document.getElementById('d-code').textContent = data.codigo;
-    document.getElementById('d-code2').textContent = data.codigo;
-    document.getElementById('d-vence').textContent = new Date(data.vence_at).toLocaleString('es-UY', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
-    lastUpload = data.comprobante;
-    form.hidden = true;
-    showDone('done-tr');
-  });
-  document.getElementById('r-file').addEventListener('change', async function () {
-    var f = this.files[0], msg = document.getElementById('r-upmsg');
-    if (!f || !lastUpload || !sb) return;
-    if (f.size > 10 * 1024 * 1024) { msg.textContent = 'El archivo pesa más de 10 MB. Probá con una foto más liviana.'; return; }
-    msg.textContent = 'Subiendo…';
-    var r = await sb.storage.from('comprobantes').uploadToSignedUrl(lastUpload.path, lastUpload.token, f, { contentType: f.type || 'application/octet-stream' });
-    msg.textContent = r.error ? 'No se pudo subir. No pasa nada: igual lo vemos en el banco.' : '¡Listo, recibimos el comprobante!';
-  });
-  (function retorno() {
-    var q = new URLSearchParams(location.search), p = q.get('pago');
-    if (!p) return;
-    var t = { ok: '¡Pago recibido!', pendiente: 'Tu pago está en proceso', error: 'El pago no se completó' }[p];
-    var d = {
-      ok: 'En unos minutos te llega por mail tu entrada con el código QR (' + (q.get('c') || '') + '). Si no lo ves, revisá la carpeta de spam.',
-      pendiente: 'Mercado Pago nos avisa cuando se acredite y ahí te mandamos la entrada por mail.',
-      error: 'No se cobró nada. Podés volver a intentar o elegir transferencia.'
-    }[p];
-    if (!t) return;
-    document.getElementById('ret-t').textContent = t;
-    document.getElementById('ret-d').textContent = d;
-    document.getElementById('form-box').open = true;
-    if (p !== 'error') document.getElementById('inscripcion').hidden = true;
-    setTimeout(function () { showDone('done-ret'); }, 300);
-  })();
-  document.addEventListener('click', function (e) {
-    var cp = e.target.closest && e.target.closest('.copy');
-    if (!cp) return;
-    var v = cp.getAttribute('data-copy');
-    var ok = function () { cp.textContent = 'Copiado'; setTimeout(function () { cp.textContent = 'Copiar'; }, 1800); };
-    var pick = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById(cp.getAttribute('data-sel'))); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); cp.textContent = 'Seleccionado'; };
-    try { navigator.clipboard.writeText(v).then(ok, pick); } catch (x) { pick(); }
   });
   links.forEach(function (a) {
     a.addEventListener('click', function (e) { e.preventDefault(); openAndGo(a.getAttribute('data-t').replace('-sunset', '')); });
