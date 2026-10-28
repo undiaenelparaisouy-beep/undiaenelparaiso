@@ -104,6 +104,17 @@ a { color: inherit; }
 }
 .wa-fab svg { width: 24px; height: 24px; flex: none; }
 .wa-fab:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+/* Inscribirme flotante, a la derecha: aparece cuando ya no se ve el botón del hero ni el de la sección de precios. */
+.ins-fab {
+  position: fixed; z-index: 22;
+  right: calc(env(safe-area-inset-right, 0px) + 14px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+  display: flex; align-items: center;
+  height: 52px; padding: 0 22px; border-radius: 26px;
+  background: var(--amber); color: #fff; text-decoration: none; font-weight: 600; font-size: .95rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
+}
+.ins-fab:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 footer { padding-bottom: 90px; }
 
 /* ===== Barra lateral: el día en globitos =====
@@ -504,6 +515,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     </details>
   </div>
 </section>
+<a class="ins-fab" id="ins-fab" href="inscripcion" hidden>Inscribirme</a>
 <a class="wa-fab" href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener" aria-label="Consultas por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Consultas</span></a>
 <footer><div class="wrap">Sábado 21 de noviembre de 2026 · Chacra El Paraíso · Punta Ballena</div></footer>
 
@@ -546,6 +558,7 @@ if (/[?&]pago=/.test(location.search)) location.replace('inscripcion' + location
     var v = r.data;
     if (!v) return;
     if (!v.tramo) {
+      document.getElementById('ins-fab').remove();
       document.getElementById('cta-res').innerHTML = '<p class="opt-k">Las inscripciones están cerradas</p><p class="soft">' + (v.libres_total === 0 ? 'Se completó el cupo.' : 'Escribinos por WhatsApp para consultar.') + '</p>';
       return;
     }
@@ -559,7 +572,16 @@ if (/[?&]pago=/.test(location.search)) location.replace('inscripcion' + location
     a.addEventListener('click', function (e) { e.preventDefault(); openAndGo(a.getAttribute('data-t').replace('-sunset', '')); });
   });
   if (location.hash && /^#[\w-]+$/.test(location.hash)) openAndGo(location.hash.slice(1));
-  if (!('IntersectionObserver' in window)) { rail.hidden = false; return; }
+  var fab = document.getElementById('ins-fab');
+  if (!('IntersectionObserver' in window)) { rail.hidden = false; if (fab) fab.hidden = false; return; }
+  var fabCover = {};
+  var fabIo = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { fabCover[e.target.className] = e.isIntersecting; });
+    var f = document.getElementById('ins-fab');
+    if (f) f.hidden = Object.keys(fabCover).some(function (k) { return fabCover[k]; });
+  });
+  fabIo.observe(hero);
+  fabIo.observe(document.getElementById('reserva'));
   var cover = {};
   var topIo = new IntersectionObserver(function (es) {
     es.forEach(function (e) { cover[e.target.className] = e.isIntersecting; });
