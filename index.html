@@ -123,7 +123,7 @@ footer { padding-bottom: 90px; }
    y el nombre del momento va en un cartelito aparte, también con fondo propio. */
 .rail {
   --row: 32px;
-  --h: calc(13 * var(--row) + 12 * 2px + 16px);
+  --h: calc(12 * var(--row) + 11 * 2px + 16px);
   position: fixed; z-index: 20;
   top: max(calc(env(safe-area-inset-top, 0px) + 8px), calc(50% - var(--h) / 2));
   right: calc(env(safe-area-inset-right, 0px) + 6px);
@@ -277,9 +277,9 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
 .draftbar, .tbd { display: none !important; }
 </style>
 
-<div class="draftbar" role="note"><div class="wrap"><b>Borrador.</b> Lo resaltado <span class="tbd">así</span> falta confirmar. Lo que nombra o muestra a Carlos necesita su aprobación.</div></div>
+<div class="draftbar" role="note"><div class="wrap"><b>Borrador.</b> Lo resaltado <span class="tbd">así</span> falta confirmar.</div></div>
 
-<nav class="rail" id="rail" aria-label="El día, hora por hora" hidden><ol><li class="cap"><a href="#dia" data-t="dia" aria-label="Arriba: el día empieza"><svg viewBox="-13 -13 26 26" aria-hidden="true"><g stroke="#f2b843" stroke-width="2" stroke-linecap="round"><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(0)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(45)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(90)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(135)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(180)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(225)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(270)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(315)"/></g><circle r="5.5" fill="#f6d06a" stroke="#fff" stroke-width="1.5"/></svg><span class="lbl">El día empieza</span></a></li><li><a href="#h1000" data-t="h1000" style="--c:#f6d98b"><span class="dot"></span><span class="lbl">10:00 · Llegada a la chacra</span></a></li><li><a href="#h1030" data-t="h1030" style="--c:#f4d27c"><span class="dot"></span><span class="lbl">10:30 · Pilates</span></a></li><li><a href="#h1130" data-t="h1130" style="--c:#f2cb6a"><span class="dot"></span><span class="lbl">11:30 · Baño de gong</span></a></li><li><a href="#h1230" data-t="h1230" style="--c:#f5c44f"><span class="dot"></span><span class="lbl">12:30 · Almuerzo</span></a></li><li><a href="#h1400" data-t="h1400" style="--c:#f2b843"><span class="dot"></span><span class="lbl">14:00 · Yoga</span></a></li><li><a href="#h1500" data-t="h1500" style="--c:#efa93a"><span class="dot"></span><span class="lbl">15:00 · Recreo</span></a></li><li><a href="#h1530" data-t="h1530" style="--c:#ec9a33"><span class="dot"></span><span class="lbl">15:30 · Tai Chi y Qigong</span></a></li><li><a href="#h1630" data-t="h1630" style="--c:#e88a2e"><span class="dot"></span><span class="lbl">16:30 · Merienda</span></a></li><li><a href="#h1700" data-t="h1700" style="--c:#e2752b"><span class="dot"></span><span class="lbl">17:00 · Carlos Perciavalle</span></a></li><li><a href="#h1830" data-t="h1830" style="--c:#ff8a3d"><span class="dot"></span><span class="lbl">18:30 · Fogón y música</span></a></li><li class="cap"><a href="#h1830" data-t="h1830-sunset" aria-label="El atardecer"><svg viewBox="-13 -13 26 26" aria-hidden="true"><defs><clipPath id="hz"><rect x="-13" y="-13" width="26" height="15"/></clipPath></defs><g stroke="#ff7a3d" stroke-width="2" stroke-linecap="round"><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(-70)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(-35)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(0)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(35)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(70)"/></g><circle r="6.5" fill="#ff8a3d" stroke="#fff" stroke-width="1.5" clip-path="url(#hz)"/><line x1="-11" y1="2.5" x2="11" y2="2.5" stroke="#c2452d" stroke-width="2" stroke-linecap="round"/><line x1="-6" y1="6.5" x2="6" y2="6.5" stroke="#c2452d" stroke-width="1.6" stroke-linecap="round" opacity=".7"/></svg><span class="lbl">Atardecer sobre la laguna</span></a></li><li><a href="#reserva" data-t="reserva" style="--c:#ff8a3d"><span class="dot res"></span><span class="lbl">Inscribite</span></a></li></ol></nav>
+<nav class="rail" id="rail" aria-label="El día, hora por hora" hidden><ol><li class="cap"><a href="#dia" data-t="dia" aria-label="Arriba: el día empieza"><svg viewBox="-13 -13 26 26" aria-hidden="true"><g stroke="#f2b843" stroke-width="2" stroke-linecap="round"><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(0)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(45)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(90)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(135)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(180)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(225)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(270)"/><line x1="0" y1="-8.5" x2="0" y2="-11.5" transform="rotate(315)"/></g><circle r="5.5" fill="#f6d06a" stroke="#fff" stroke-width="1.5"/></svg><span class="lbl">El día empieza</span></a></li><li><a href="#h1000" data-t="h1000" style="--c:#f6d98b"><span class="dot"></span><span class="lbl">10:00 · Llegada a la chacra</span></a></li><li><a href="#h1030" data-t="h1030" style="--c:#f4d27c"><span class="dot"></span><span class="lbl">10:30 · Pilates</span></a></li><li><a href="#h1145" data-t="h1145" style="--c:#f2cb6a"><span class="dot"></span><span class="lbl">11:45 · Baño de gong</span></a></li><li><a href="#h1245" data-t="h1245" style="--c:#f5c44f"><span class="dot"></span><span class="lbl">12:45 · Almuerzo y tiempo libre</span></a></li><li><a href="#h1430" data-t="h1430" style="--c:#f2b843"><span class="dot"></span><span class="lbl">14:30 · Yoga</span></a></li><li><a href="#h1545" data-t="h1545" style="--c:#ec9a33"><span class="dot"></span><span class="lbl">15:45 · Tai Chi y Qigong</span></a></li><li><a href="#h1645" data-t="h1645" style="--c:#e88a2e"><span class="dot"></span><span class="lbl">16:45 · Merienda</span></a></li><li><a href="#h1715" data-t="h1715" style="--c:#e2752b"><span class="dot"></span><span class="lbl">17:15 · Carlos Perciavalle</span></a></li><li><a href="#h1830" data-t="h1830" style="--c:#ff8a3d"><span class="dot"></span><span class="lbl">18:30 · Fogón y música</span></a></li><li class="cap"><a href="#h1830" data-t="h1830-sunset" aria-label="El atardecer"><svg viewBox="-13 -13 26 26" aria-hidden="true"><defs><clipPath id="hz"><rect x="-13" y="-13" width="26" height="15"/></clipPath></defs><g stroke="#ff7a3d" stroke-width="2" stroke-linecap="round"><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(-70)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(-35)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(0)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(35)"/><line x1="0" y1="-8.5" x2="0" y2="-11" transform="rotate(70)"/></g><circle r="6.5" fill="#ff8a3d" stroke="#fff" stroke-width="1.5" clip-path="url(#hz)"/><line x1="-11" y1="2.5" x2="11" y2="2.5" stroke="#c2452d" stroke-width="2" stroke-linecap="round"/><line x1="-6" y1="6.5" x2="6" y2="6.5" stroke="#c2452d" stroke-width="1.6" stroke-linecap="round" opacity=".7"/></svg><span class="lbl">Atardecer sobre la laguna</span></a></li><li><a href="#reserva" data-t="reserva" style="--c:#ff8a3d"><span class="dot res"></span><span class="lbl">Inscribite</span></a></li></ol></nav>
 <div class="rail-tip" id="rail-tip" hidden aria-hidden="true"></div>
 
 <header class="hero">
@@ -295,7 +295,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
   </div>
 </header>
 
-<nav class="menu" aria-label="Menú"><div class="wrap"><ul><li><a href="#dia" data-go="dia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg><span><b>El programa</b><small>Hora por hora</small></span></a></li><li><a href="#reserva" data-go="reserva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 8.5v10" stroke-dasharray="1.5 2"/></svg><span><b>Inscribite</b><small>Precios y entradas</small></span></a></li><li><a href="#h1230" data-go="h1230"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M9 9c0-1.5 1-1.5 1-3M13 9c0-1.5 1-1.5 1-3"/></svg><span><b>La comida</b><small>Almuerzo y merienda</small></span></a></li><li><a href="#h1500" data-go="h1500"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l6-8 4 5 3-3 5 6z"/><circle cx="16.5" cy="7.5" r="2"/></svg><span><b>El lugar</b><small>Fotos de la chacra</small></span></a></li><li><a href="#info" data-go="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><b>Cómo llegar</b><small>Qué traer y preguntas</small></span></a></li><li><a class="wa" href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span><b>Consultas</b><small>Por WhatsApp</small></span></a></li></ul></div></nav>
+<nav class="menu" aria-label="Menú"><div class="wrap"><ul><li><a href="#dia" data-go="dia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg><span><b>El programa</b><small>Hora por hora</small></span></a></li><li><a href="#reserva" data-go="reserva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 8.5v10" stroke-dasharray="1.5 2"/></svg><span><b>Inscribite</b><small>Precios y entradas</small></span></a></li><li><a href="#h1245" data-go="h1245"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M9 9c0-1.5 1-1.5 1-3M13 9c0-1.5 1-1.5 1-3"/></svg><span><b>La comida</b><small>Almuerzo y merienda</small></span></a></li><li><a href="#h1245" data-go="h1245"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l6-8 4 5 3-3 5 6z"/><circle cx="16.5" cy="7.5" r="2"/></svg><span><b>El lugar</b><small>Fotos de la chacra</small></span></a></li><li><a href="#info" data-go="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><b>Cómo llegar</b><small>Qué traer y preguntas</small></span></a></li><li><a class="wa" href="https://wa.me/59892594179?text=Hola!%20Tengo%20una%20consulta%20sobre%20Un%20d%C3%ADa%20en%20El%20Para%C3%ADso%20(21%2F11)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span><b>Consultas</b><small>Por WhatsApp</small></span></a></li></ul></div></nav>
 
 <main id="dia">
   <div class="day-head"><div class="wrap"><p class="kick">El sábado, hora por hora</p><p class="hint">Tocá cada momento para verlo completo.</p></div></div>
@@ -330,7 +330,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     </div>
   </details>
 
-  <details class="hour" id="h1130" style="--a:#e9efe4; --b:#f1f0dc" data-clock="11:30 · Baño de gong" data-sun="#f2cb6a"><summary><div class="wrap row"><time>11:30</time><span class="line"><span class="what">Baño de gong</span><span class="who">con Vero Sosa</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+  <details class="hour" id="h1145" style="--a:#e9efe4; --b:#f1f0dc" data-clock="11:45 · Baño de gong" data-sun="#f2cb6a"><summary><div class="wrap row"><time>11:45</time><span class="line"><span class="what">Baño de gong</span><span class="who">con Vero Sosa</span></span><span class="tog" aria-hidden="true"></span></div></summary>
     <div class="wrap chapter split flip">
       <div class="stamp">
         
@@ -358,7 +358,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     </div>
   </details>
 
-  <details class="hour" id="h1230" style="--a:#f1f0dc; --b:#f6efd2" data-clock="12:30 · Almuerzo" data-sun="#f5c44f"><summary><div class="wrap row"><time>12:30</time><span class="line"><span class="what">Almuerzo</span><span class="who">RaízCo Experiencias</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+  <details class="hour" id="h1245" style="--a:#f1f0dc; --b:#f6efd2" data-clock="12:45 · Almuerzo y tiempo libre" data-sun="#f5c44f"><summary><div class="wrap row"><time>12:45</time><span class="line"><span class="what">Almuerzo y tiempo libre</span><span class="who">RaízCo Experiencias · caminata a la laguna</span></span><span class="tog" aria-hidden="true"></span></div></summary>
     <div class="wrap chapter">
       <div class="stamp"><p class="lead soft">Cocina de estación de RaízCo Experiencias, Matías Amadasi y Agustina Francia. Producto local, sin ultraprocesados, adaptable a distintas necesidades: avisanos al reservar.</p></div>
       <div class="table">
@@ -366,10 +366,19 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
         <div><h3>Todo el día</h3><ul class="soft"><li>Agua de menta, limón y jengibre</li><li>Té chai de la casa</li><li>Kéfir saborizado</li><li>Licuados hechos en el momento</li></ul></div>
       </div>
       <p class="soft"><span class="tbd">menú final a elegir con RaízCo · pedirles fotos</span></p>
+      <p class="lead soft">Después de comer, tiempo libre para recorrer El Paraíso, la chacra de Carlos Perciavalle, hasta la orilla de la laguna. Yoga empieza a las 14:30, con la comida ya asentada.</p>
+      <div class="walk-wrap">
+        <div class="walk" tabindex="0" aria-label="Fotos de la chacra, deslizá para ver más">
+          <figure><img src="img/g0163.jpg" alt="Sol entre los árboles y la laguna" loading="lazy"><figcaption class="soft">La Laguna del Sauce</figcaption></figure>
+          <figure><img src="img/g0170.jpg" alt="Cipreses frente a la laguna" loading="lazy"><figcaption class="soft">Los cipreses</figcaption></figure>
+          <figure><img src="img/g0152.jpg" alt="Oveja con corderos" loading="lazy"><figcaption class="soft">Las vecinas</figcaption></figure>
+          <figure><img src="img/g0167.jpg" alt="Estanque de piedra" loading="lazy"><figcaption class="soft">El estanque</figcaption></figure>
+        </div>
+      </div>
     </div>
   </details>
 
-  <details class="hour" id="h1400" style="--a:#f6efd2; --b:#f3e4bd" data-clock="14:00 · Yoga" data-sun="#f2b843"><summary><div class="wrap row"><time>14:00</time><span class="line"><span class="what">Yoga</span><span class="who">con Susana Ameglio</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+  <details class="hour" id="h1430" style="--a:#f6efd2; --b:#efd6a6" data-clock="14:30 · Yoga" data-sun="#f2b843"><summary><div class="wrap row"><time>14:30</time><span class="line"><span class="what">Yoga</span><span class="who">con Susana Ameglio</span></span><span class="tog" aria-hidden="true"></span></div></summary>
     <div class="wrap chapter split">
       <div class="stamp">
         
@@ -388,21 +397,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     </div>
   </details>
 
-  <details class="hour" id="h1500" style="--a:#f3e4bd; --b:#efd6a6" data-clock="15:00 · Recreo" data-sun="#efa93a"><summary><div class="wrap row"><time>15:00</time><span class="line"><span class="what">Recreo</span><span class="who">Caminar la chacra</span></span><span class="tog" aria-hidden="true"></span></div></summary>
-    <div class="wrap chapter">
-      <div class="stamp"><p class="lead soft">Media hora libre para recorrer El Paraíso, la chacra de Carlos Perciavalle <span class="tbd">requiere aprobación de Carlos</span>, hasta la orilla de la laguna.</p></div>
-      <div class="walk-wrap">
-        <div class="walk" tabindex="0" aria-label="Fotos de la chacra, deslizá para ver más">
-          <figure><img src="img/g0163.jpg" alt="Sol entre los árboles y la laguna" loading="lazy"><figcaption class="soft">La Laguna del Sauce</figcaption></figure>
-          <figure><img src="img/g0170.jpg" alt="Cipreses frente a la laguna" loading="lazy"><figcaption class="soft">Los cipreses</figcaption></figure>
-          <figure><img src="img/g0152.jpg" alt="Oveja con corderos" loading="lazy"><figcaption class="soft">Las vecinas</figcaption></figure>
-          <figure><img src="img/g0167.jpg" alt="Estanque de piedra" loading="lazy"><figcaption class="soft">El estanque</figcaption></figure>
-        </div>
-      </div>
-    </div>
-  </details>
-
-  <details class="hour" id="h1530" style="--a:#efd6a6; --b:#e8c08a" data-clock="15:30 · Tai Chi" data-sun="#ec9a33"><summary><div class="wrap row"><time>15:30</time><span class="line"><span class="what">Tai Chi y Qigong</span><span class="who">con Camilo Sosa Garcia · Camino del Dragón</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+  <details class="hour" id="h1545" style="--a:#efd6a6; --b:#e8c08a" data-clock="15:45 · Tai Chi" data-sun="#ec9a33"><summary><div class="wrap row"><time>15:45</time><span class="line"><span class="what">Tai Chi y Qigong</span><span class="who">con Camilo Sosa Garcia · Camino del Dragón</span></span><span class="tog" aria-hidden="true"></span></div></summary>
     <div class="wrap chapter split flip">
       <div class="stamp">
         
@@ -422,20 +417,20 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
     </div>
   </details>
 
-  <details class="hour" id="h1630" style="--a:#e8c08a; --b:#dfa978" data-clock="16:30 · Merienda" data-sun="#e88a2e"><summary><div class="wrap row"><time>16:30</time><span class="line"><span class="what">Merienda</span><span class="who">RaízCo Experiencias</span></span><span class="tog" aria-hidden="true"></span></div></summary>
+  <details class="hour" id="h1645" style="--a:#e8c08a; --b:#dfa978" data-clock="16:45 · Merienda" data-sun="#e88a2e"><summary><div class="wrap row"><time>16:45</time><span class="line"><span class="what">Merienda</span><span class="who">RaízCo Experiencias</span></span><span class="tog" aria-hidden="true"></span></div></summary>
     <div class="wrap mini">
       
       <p class="body soft">Mandala de frutas y frutos secos, torta de manzana especiada, brownie de la tierra, cookies de avena y dátiles. Licuados hechos en el momento.</p>
     </div>
   </details>
 
-  <details class="hour" id="h1700" style="--a:#dfa978; --b:#b97a63" data-clock="17:00 · Carlos Perciavalle" data-sun="#e2752b"><summary><div class="wrap row"><time>17:00</time><span class="line"><span class="what">Carlos Perciavalle</span><span class="who">Anécdotas del Paraíso <span class="tbd">aprobación de Carlos</span></span></span><span class="tog" aria-hidden="true"></span></div></summary>
+  <details class="hour" id="h1715" style="--a:#dfa978; --b:#b97a63" data-clock="17:15 · Carlos Perciavalle" data-sun="#e2752b"><summary><div class="wrap row"><time>17:15</time><span class="line"><span class="what">Carlos Perciavalle</span><span class="who">Anécdotas del Paraíso</span></span><span class="tog" aria-hidden="true"></span></div></summary>
     <div class="wrap chapter split">
       
       <div class="body">
         <img class="portrait wide" src="img/g0161.jpg" alt="Cartel fileteado de Carlos Perciavalle, cómico" loading="lazy">
         <p><span class="tbd">presentación de Carlos, en sus palabras</span></p>
-        <p class="soft"><span class="tbd">18:00 a 18:30 sin asignar</span></p>
+        <p class="soft"><span class="tbd">18:15 a 18:30 sin asignar</span></p>
       </div>
     </div>
   </details>
