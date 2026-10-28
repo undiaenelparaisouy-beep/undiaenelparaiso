@@ -219,6 +219,9 @@ footer { padding-bottom: 90px; }
   .chapter.split.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
   .chapter.split.flip .stamp { order: 2; }
 }
+/* Almuerzo: retrato de RaízCo con el menú, y la caminata a todo el ancho debajo (fuera del bloque con la foto fija). */
+.lunch { display: grid; gap: clamp(24px, 4vw, 48px); }
+.walk-row { display: grid; gap: 16px; min-width: 0; }
 .mini { display: grid; gap: 6px; }
 .mini .stamp time { font-size: clamp(3.6rem, 12vw, 6.5rem); }
 
@@ -359,13 +362,21 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
   </details>
 
   <details class="hour" id="h1245" style="--a:#f1f0dc; --b:#f6efd2" data-clock="12:45 · Almuerzo y tiempo libre" data-sun="#f5c44f"><summary><div class="wrap row"><time>12:45</time><span class="line"><span class="what">Almuerzo y tiempo libre</span><span class="who">RaízCo Experiencias · caminata a la laguna</span></span><span class="tog" aria-hidden="true"></span></div></summary>
-    <div class="wrap chapter">
-      <div class="stamp"><p class="lead soft">Cocina de estación de RaízCo Experiencias, Matías Amadasi y Agustina Francia. Producto local, sin ultraprocesados, adaptable a distintas necesidades: avisanos al reservar.</p></div>
+    <div class="wrap lunch">
+    <div class="chapter split">
+      <div class="stamp">
+        <img class="portrait tall" src="img/p-raizco.jpg" alt="Matías Amadasi y Agustina Francia, de RaízCo Experiencias" loading="lazy">
+      </div>
+      <div class="body">
+      <p class="lead soft">Cocina de estación de RaízCo Experiencias, Matías Amadasi y Agustina Francia. Producto local, sin ultraprocesados, adaptable a distintas necesidades: avisanos al reservar.</p>
       <div class="table">
         <div><h3>Para compartir</h3><ul class="soft"><li>Panes de masa madre</li><li>Focaccia con cherry y romero</li><li>Hummus de la huerta</li><li>Wraps de falafel de habas</li><li>Buddha bowl de quinoa</li><li>Fermentos y pickles</li></ul></div>
         <div><h3>Todo el día</h3><ul class="soft"><li>Agua de menta, limón y jengibre</li><li>Té chai de la casa</li><li>Kéfir saborizado</li><li>Licuados hechos en el momento</li></ul></div>
       </div>
-      <p class="soft"><span class="tbd">menú final a elegir con RaízCo · pedirles fotos</span></p>
+      <p class="soft"><span class="tbd">menú final a elegir con RaízCo · pedirles fotos de los platos</span></p>
+      </div>
+    </div>
+      <div class="walk-row">
       <p class="lead soft">Después de comer, tiempo libre para recorrer El Paraíso, la chacra de Carlos Perciavalle, hasta la orilla de la laguna. Yoga empieza a las 14:30, con la comida ya asentada.</p>
       <div class="walk-wrap">
         <div class="walk" tabindex="0" aria-label="Fotos de la chacra, deslizá para ver más">
@@ -374,6 +385,7 @@ footer { background: #120d0f; color: var(--soft-night); font-size: .85rem; paddi
           <figure><img src="img/g0152.jpg" alt="Oveja con corderos" loading="lazy"><figcaption class="soft">Las vecinas</figcaption></figure>
           <figure><img src="img/g0167.jpg" alt="Estanque de piedra" loading="lazy"><figcaption class="soft">El estanque</figcaption></figure>
         </div>
+      </div>
       </div>
     </div>
   </details>
