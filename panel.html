@@ -45,6 +45,18 @@
   details.tool summary { cursor: pointer; font-weight: 600; }
   textarea { width: 100%; min-height: 120px; margin: 10px 0; }
   .match { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+  #web .stats { margin: 12px 0; }
+  .dias { display: flex; align-items: flex-end; gap: 4px; height: 90px; margin: 4px 0 4px; }
+  .dia { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; font-size: .7rem; color: var(--soft); font-variant-numeric: tabular-nums; }
+  .dia i { display: block; width: 100%; max-width: 28px; background: var(--amber); border-radius: 3px 3px 0 0; min-height: 2px; }
+  .canales { width: 100%; border-collapse: collapse; font-size: .9rem; margin: 10px 0; font-variant-numeric: tabular-nums; }
+  .canales th, .canales td { text-align: right; padding: 5px 6px; border-bottom: 1px solid var(--line); }
+  .canales th:first-child, .canales td:first-child { text-align: left; }
+  .canales th { font-weight: 600; color: var(--soft); }
+  .nuevo { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; margin-top: 10px; }
+  .nuevo label { display: grid; gap: 3px; font-size: .8rem; color: var(--soft); }
+  .nuevo input, .nuevo select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  .off td { opacity: .5; }
   .login { max-width: 360px; margin: 60px auto; display: grid; gap: 10px; }
   .login input { font: inherit; padding: 10px; border: 1px solid var(--line); border-radius: 6px; }
   .login button { font: inherit; font-weight: 600; padding: 10px; border: 0; border-radius: 999px; background: var(--amber); color: #fff; cursor: pointer; }
@@ -69,6 +81,30 @@
       <span class="who"><span id="me"></span> · <a href="#" id="out">salir</a></span>
     </header>
     <div class="stats" id="stats"></div>
+
+    <details class="tool" id="web" open>
+      <summary>Visitas a la web</summary>
+      <div class="stats" id="vstats"></div>
+      <div class="dias" id="vdias"></div>
+      <table class="canales"><thead><tr><th>Llegaron por</th><th>Entraron</th><th>Abrieron inscripción</th><th>Se inscribieron</th></tr></thead><tbody id="vcanales"></tbody></table>
+      <p class="muted">Cuenta personas (una por visita, aunque recorran varias páginas). Para saber de dónde viene cada una, compartí el link con una etiqueta: <b>undiaenelparaiso.uy/?ref=ig-bio</b>, <b>?ref=wpp-grupo</b>, etc. Lo que llega por WhatsApp sin etiqueta figura como "directo".</p>
+    </details>
+
+    <details class="tool" id="cods">
+      <summary>Referidos y cupones</summary>
+      <table class="canales"><thead><tr><th>Código</th><th>Para quién</th><th>%</th><th>Entradas pagas</th><th>A pagar / descontado</th><th></th></tr></thead><tbody id="ctabla"></tbody></table>
+      <form class="nuevo" id="cform">
+        <label>Tipo<select id="ct"><option value="referido">Referido (cobra comisión)</option><option value="cupon">Cupón (descuento)</option></select></label>
+        <label>Código<input id="cc" required pattern="[A-Za-z0-9-]{3,20}" placeholder="MACA" style="width:9ch;text-transform:uppercase"></label>
+        <label>Para quién<input id="cn" required placeholder="Maca Caeiro"></label>
+        <label>Contacto<input id="cx" placeholder="celular o mail"></label>
+        <label>%<input id="cp" type="number" min="1" max="90" value="10" required style="width:6ch"></label>
+        <label class="solo-cupon" hidden>Tope de entradas<input id="cm" type="number" min="1" placeholder="sin tope" style="width:9ch"></label>
+        <label>Vale hasta<input id="ch" type="date"></label>
+        <button class="act main">Crear</button>
+      </form>
+      <p class="muted">Referido: comparte <b>undiaenelparaiso.uy/?ref=CODIGO</b> y cobra el % sobre el precio de transferencia de cada entrada que se paga por su link (o con su código). Quien compra paga el precio normal. Cupón: descuenta el % sobre el precio del tramo vigente. Las comisiones se pagan después del 13/11, cuando ya no hay devoluciones.</p>
+    </details>
 
     <details class="tool">
       <summary>Conciliar con el resumen del banco</summary>
@@ -117,7 +153,7 @@
 
   async function cargar() {
     var r = await sb.from('inscripciones')
-      .select('id, codigo, created_at, cantidad, metodo, tramo, total, celular, email, novedades, estado, vence_at, pagada_at, notas, asistentes(nombre, apellido, ci, nacimiento, ingreso_at, orden)')
+      .select('id, codigo, created_at, cantidad, metodo, tramo, total, cupon, referido, descuento, comision, celular, email, novedades, estado, vence_at, pagada_at, notas, asistentes(nombre, apellido, ci, nacimiento, ingreso_at, orden)')
       .order('created_at', { ascending: false });
     if (r.error) { $('list').innerHTML = '<p>No pude leer las inscripciones: ' + esc(r.error.message) + '. ¿Tu mail está en la tabla admins?</p>'; return; }
     rows = r.data;
@@ -133,6 +169,78 @@
       '<div class="stat"><b>' + pesos(cobrado) + '</b><span>cobrado (bruto)</span></div>' +
       '<div class="stat"><b>' + adentro + '</b><span>ingresaron el día</span></div>';
     pintar();
+    visitas();
+    codigos();
+  }
+
+  async function codigos() {
+    var r = await sb.from('codigos').select('*').order('created_at');
+    if (r.error) { $('ctabla').innerHTML = '<tr><td colspan="6" class="muted">No pude leer los códigos: ' + esc(r.error.message) + '</td></tr>'; return; }
+    var pagas = rows.filter(function (x) { return x.estado === 'pagada'; });
+    $('ctabla').innerHTML = '';
+    if (!r.data.length) $('ctabla').innerHTML = '<tr><td colspan="6" class="muted">Todavía no hay códigos.</td></tr>';
+    r.data.forEach(function (c) {
+      var campo = c.tipo === 'referido' ? 'referido' : 'cupon';
+      var suyas = pagas.filter(function (x) { return x[campo] === c.codigo; });
+      var entradas = suyas.reduce(function (a, x) { return a + x.cantidad; }, 0);
+      var plata = suyas.reduce(function (a, x) { return a + (c.tipo === 'referido' ? x.comision : x.descuento); }, 0);
+      var tr = document.createElement('tr');
+      if (!c.activo) tr.className = 'off';
+      tr.innerHTML = '<td><b>' + esc(c.codigo) + '</b><br><span class="muted">' + (c.tipo === 'referido' ? 'referido' : 'cupón') + (c.hasta ? ' · hasta ' + esc(c.hasta) : '') + (c.max_entradas ? ' · tope ' + c.max_entradas : '') + (c.activo ? '' : ' · pausado') + '</span></td>' +
+        '<td>' + esc(c.nombre) + (c.contacto ? '<br><span class="muted">' + esc(c.contacto) + '</span>' : '') + '</td>' +
+        '<td>' + c.porcentaje + '%</td><td>' + entradas + '</td><td>' + pesos(plata) + (c.tipo === 'referido' ? ' a pagar' : ' descontado') + '</td><td class="acts"></td>';
+      var acts = tr.querySelector('.acts');
+      if (c.tipo === 'referido') addBtn(acts, 'Copiar link', false, function (b) {
+        navigator.clipboard.writeText('https://undiaenelparaiso.uy/?ref=' + c.codigo).then(function () { b.textContent = 'Copiado'; });
+      });
+      addBtn(acts, c.activo ? 'Pausar' : 'Activar', false, async function (b) {
+        b.disabled = true;
+        var u = await sb.from('codigos').update({ activo: !c.activo }).eq('codigo', c.codigo);
+        if (u.error) alert('No se pudo: ' + u.error.message);
+        codigos();
+      });
+      $('ctabla').appendChild(tr);
+    });
+  }
+
+  $('ct').addEventListener('change', function () {
+    var cupon = $('ct').value === 'cupon';
+    document.querySelector('.solo-cupon').hidden = !cupon;
+    $('cp').value = cupon ? '' : 10;
+  });
+  $('cform').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var r = await sb.from('codigos').insert({
+      codigo: $('cc').value.trim().toUpperCase(), tipo: $('ct').value, nombre: $('cn').value.trim(),
+      contacto: $('cx').value.trim() || null, porcentaje: Number($('cp').value),
+      max_entradas: $('ct').value === 'cupon' && $('cm').value ? Number($('cm').value) : null, hasta: $('ch').value || null
+    });
+    if (r.error) { alert(/duplicate|unique/.test(r.error.message) ? 'Ese código ya existe.' : 'No se pudo: ' + r.error.message); return; }
+    $('cc').value = ''; $('cn').value = ''; $('cx').value = ''; $('cm').value = ''; $('ch').value = '';
+    codigos();
+  });
+
+  async function visitas() {
+    var v = (await sb.rpc('resumen_visitas')).data;
+    if (!v) { $('web').hidden = true; return; }
+    var pct = function (a, b) { return b ? Math.round(a * 100 / b) + '%' : '–'; };
+    $('vstats').innerHTML =
+      '<div class="stat"><b>' + v.hoy + '</b><span>entraron hoy</span></div>' +
+      '<div class="stat"><b>' + v.visitas + '</b><span>entraron en total</span></div>' +
+      '<div class="stat"><b>' + v.abrieron + '</b><span>abrieron la inscripción · ' + pct(v.abrieron, v.visitas) + '</span></div>' +
+      '<div class="stat"><b>' + v.inscriptos + '</b><span>se inscribieron · ' + pct(v.inscriptos, v.visitas) + '</span></div>';
+    // Últimos 14 días, también los que no tuvieron visitas.
+    var porDia = {}, max = 1, html = '';
+    v.dias.forEach(function (d) { porDia[d.dia] = d; max = Math.max(max, d.visitas); });
+    for (var i = 13; i >= 0; i--) {
+      var t = new Date(Date.now() - i * 864e5), key = t.toLocaleDateString('en-CA', { timeZone: 'America/Montevideo' });
+      var n = porDia[key] ? porDia[key].visitas : 0;
+      html += '<div class="dia" title="' + key + ': ' + n + ' visitas"><span>' + (n || '') + '</span><i style="height:' + (n * 70 / max) + 'px"></i>' + key.slice(8) + '</div>';
+    }
+    $('vdias').innerHTML = html;
+    $('vcanales').innerHTML = v.canales.length ? v.canales.map(function (c) {
+      return '<tr><td>' + esc(c.canal) + '</td><td>' + c.visitas + '</td><td>' + c.abrieron + '</td><td>' + c.inscriptos + '</td></tr>';
+    }).join('') : '<tr><td colspan="4" class="muted">Todavía no hay visitas registradas.</td></tr>';
   }
 
   function pintar() {
@@ -157,7 +265,8 @@
         '<span>' + r.cantidad + (r.cantidad === 1 ? ' entrada' : ' entradas') + ' · ' + pesos(r.total) + ' · ' + esc(r.metodo) + '</span>' +
         '<span class="muted">' + fecha(r.created_at) + (e === 'pendiente' ? ' · vence ' + fecha(r.vence_at) : '') + (r.pagada_at ? ' · pagó ' + fecha(r.pagada_at) : '') + '</span></div>' +
         '<ul class="people">' + gente + '</ul>' +
-        '<div class="muted">' + esc(r.email) + ' · ' + esc(r.celular) + (r.novedades ? ' · quiere novedades' : '') + (r.notas ? ' · ' + esc(r.notas) : '') + '</div>' +
+        '<div class="muted">' + esc(r.email) + ' · ' + esc(r.celular) + (r.novedades ? ' · quiere novedades' : '') + (r.notas ? ' · ' + esc(r.notas) : '') +
+          (r.cupon ? ' · cupón ' + esc(r.cupon) + ' (−' + pesos(r.descuento) + ')' : '') + (r.referido ? ' · referido ' + esc(r.referido) + ' (' + pesos(r.comision) + ')' : '') + '</div>' +
         '<div class="acts"></div>';
       var acts = el.querySelector('.acts');
       if (r.metodo === 'transferencia') addBtn(acts, 'Ver comprobante', false, function () { verComprobante(r.codigo); });

@@ -122,8 +122,8 @@ footer { padding-bottom: 90px; }
 .acct div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 10px; align-items: baseline; }
 .acct dt { color: var(--soft-night); font-size: .9rem; }
 .acct dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.copy { font: inherit; font-size: .8rem; font-weight: 600; color: var(--ink-night); background: transparent; border: 1px solid rgba(247,236,224,.4); border-radius: 999px; padding: 2px 10px; margin-left: 6px; cursor: pointer; }
-.copy:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+.copy, .cbtn { font: inherit; font-size: .8rem; font-weight: 600; color: var(--ink-night); background: transparent; border: 1px solid rgba(247,236,224,.4); border-radius: 999px; padding: 2px 10px; margin-left: 6px; cursor: pointer; }
+.copy:focus-visible, .cbtn:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .up { display: grid; gap: 8px; }
 .up label { font-size: .95rem; }
@@ -146,6 +146,10 @@ body { background: #120d0f; }
 .now-price .list { font-family: var(--f-hour); font-size: clamp(1.4rem, 4vw, 1.9rem); line-height: 1; color: var(--soft-night); }
 .now-price .when { flex-basis: 100%; color: var(--soft-night); font-size: .95rem; }
 .reg { margin-top: 36px; }
+.cupon { flex-basis: 100%; font-size: .9rem; }
+.cupon .linkish { font: inherit; color: var(--soft-night); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.cupon-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.reg .cupon-row input { width: 14ch; text-transform: uppercase; }
 .draftbar, .tbd { display: none !important; }
 </style>
 
@@ -168,6 +172,14 @@ body { background: #120d0f; }
           <output id="q-val" aria-live="polite">1</output>
           <button type="button" class="qbtn" id="q-plus" aria-label="Una entrada más">+</button>
           <p class="total">Total <b id="q-total">$ 2.800</b> <small>· $ 2.800 c/u, early bird</small></p>
+          <div class="cupon">
+            <button type="button" class="linkish" id="c-open">¿Tenés un código de descuento?</button>
+            <div class="cupon-row" id="c-row" hidden>
+              <input type="text" id="c-cod" aria-label="Código de descuento" autocomplete="off" maxlength="20">
+              <button type="button" class="cbtn" id="c-ok">Aplicar</button>
+              <span class="soft small" id="c-msg" aria-live="polite"></span>
+            </div>
+          </div>
         </div>
       </fieldset>
 
@@ -237,12 +249,14 @@ body { background: #120d0f; }
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="config.js"></script>
+<script src="visitas.js"></script>
 <script>
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var CFG = window.EL_PARAISO, sb = (CFG && window.supabase) ? window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_KEY) : null;
   var PRICE_T = 2800, PRICE_C = 3150, TRAMO = 'early bird', MAX = 6, qty = 1, SENDING = false;
-  var PRICE = PRICE_T;
+  var PRICE = PRICE_T, PCT = 0;
+  function conCodigo(p) { return Math.round(p * (100 - PCT) / 100); }
   function metodo() { return document.getElementById('p-mp').checked ? 'tarjeta' : 'transferencia'; }
   var people = document.getElementById('people');
   var fmt = function (n) { return '$ ' + n.toLocaleString('es-UY'); };
@@ -270,9 +284,9 @@ body { background: #120d0f; }
     while (people.children.length < qty) people.appendChild(card(people.children.length));
     while (people.children.length > qty) people.removeChild(people.lastChild);
     document.getElementById('q-val').textContent = qty;
-    PRICE = metodo() === 'tarjeta' ? PRICE_C : PRICE_T;
+    PRICE = conCodigo(metodo() === 'tarjeta' ? PRICE_C : PRICE_T);
     document.getElementById('q-total').textContent = fmt(PRICE * qty);
-    document.querySelector('.total small').textContent = '· ' + fmt(PRICE) + ' c/u, ' + TRAMO + (metodo() === 'tarjeta' ? ', con tarjeta' : '');
+    document.querySelector('.total small').textContent = '· ' + fmt(PRICE) + ' c/u, ' + TRAMO + (metodo() === 'tarjeta' ? ', con tarjeta' : '') + (PCT ? ', con ' + PCT + '% de descuento' : '');
     document.getElementById('q-minus').disabled = qty <= 1;
     document.getElementById('q-plus').disabled = qty >= MAX;
   }
@@ -281,6 +295,24 @@ body { background: #120d0f; }
   render();
   document.getElementById('p-tr').addEventListener('change', render);
   document.getElementById('p-mp').addEventListener('change', render);
+  // Código de descuento. Si es el código de quien lo recomendó, queda registrado sin descuento.
+  var cod = document.getElementById('c-cod');
+  document.getElementById('c-open').addEventListener('click', function () {
+    this.hidden = true; document.getElementById('c-row').hidden = false; cod.focus();
+  });
+  async function aplicarCodigo() {
+    var v = cod.value.trim(), msg = document.getElementById('c-msg');
+    PCT = 0;
+    if (!v || !sb) { msg.textContent = ''; render(); return; }
+    var c = (await sb.rpc('validar_codigo', { p_codigo: v })).data;
+    if (!c) msg.textContent = 'Ese código no existe o ya venció.';
+    else if (c.tipo === 'referido') msg.textContent = 'Listo, quedó registrado quién te recomendó.';
+    else if (c.quedan === 0) msg.textContent = 'Ese código ya no tiene lugares.';
+    else { PCT = c.porcentaje; msg.textContent = c.porcentaje + '% de descuento aplicado.'; }
+    render();
+  }
+  document.getElementById('c-ok').addEventListener('click', aplicarCodigo);
+  cod.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); aplicarCodigo(); } });
   if (sb) sb.rpc('estado_venta').then(function (r) {
     var v = r.data;
     if (!v) return;
@@ -347,6 +379,8 @@ body { background: #120d0f; }
           consentimiento: document.getElementById('r-ok').checked,
           deslinde: document.getElementById('r-salud').checked,
           novedades: !!(document.getElementById('r-news') && document.getElementById('r-news').checked),
+          cupon: cod.value.trim(),
+          ref: (function () { try { return localStorage.getItem('ref') || ''; } catch (x) { return ''; } })(),
           sitio: document.getElementById('r-sitio').value
         })
       });
@@ -358,6 +392,8 @@ body { background: #120d0f; }
       var msg = {
         sin_lugar: 'No quedan lugares suficientes en este tramo. Probá con menos entradas o escribinos por WhatsApp.',
         datos: 'Revisá los datos: algo no está bien' + ((data.campos || []).indexOf('ci_repetida') >= 0 ? ' (hay una cédula repetida).' : '.'),
+        codigo_invalido: 'El código de descuento no existe o ya venció. Borralo o probá con otro.',
+        codigo_agotado: 'El código de descuento no alcanza para tantas entradas. Probá con menos o sin código.',
         mercadopago: 'No pudimos abrir Mercado Pago. Probá de nuevo o elegí transferencia.',
         red: 'No hay conexión. Revisá internet y probá de nuevo.'
       }[data && data.error] || 'Algo falló de nuestro lado. Probá de nuevo en un rato o escribinos por WhatsApp.';
@@ -367,6 +403,7 @@ body { background: #120d0f; }
       });
       err.textContent = msg; err.hidden = false; return;
     }
+    if (window.visita) visita('inscripto');
 
     if (data.checkout_url) {
       document.getElementById('d-mp').href = data.checkout_url;
