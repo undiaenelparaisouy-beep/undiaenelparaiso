@@ -73,7 +73,8 @@ a { color: inherit; }
 /* Franja de sponsor: entre la portada y el menú, chica y en el mismo fondo claro. */
 .sponsors { background: #dde7ea; padding-top: 24px; }
 .sponsors .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 14px; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--soft-day); }
-.sponsors img { height: 56px; width: auto; }
+.sponsors img { height: 120px; width: auto; }
+@media (max-width: 600px) { .sponsors img { height: 96px; } }
 .menu .wrap { padding-block: 28px 4px; }
 .menu ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .menu a {
